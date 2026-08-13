@@ -1,0 +1,81 @@
+---
+title: 日産 月次 生産・販売・輸出
+wide: true
+---
+
+<h1>日産自動車 月次 生産・販売・輸出</h1>
+<h2>前年同月比（%）</h2>
+
+<div class="note">
+<p><strong>データ</strong>　日産自動車IR「生産・販売・輸出実績」より前年同月比（%）。<strong>100超＝前年同月超え</strong>、100未満＝下回り。</p>
+<p><strong>最新公表</strong>　2026年6月度（2026/7/30発表）。7月度は8月下旬発表予定。</p>
+<p><strong>読み方の注意</strong>　中国の販売は決算資料では暦年ベースで計上されるため、月次速報のほうが決算より約3か月先行します。月次で4〜6月の急変を掴んでも、決算に現れるのは次の四半期です。</p>
+</div>
+
+<h2>販売 前年同月比（2026年 1月〜6月）</h2>
+<div id="highlight"></div>
+
+<h2>2026年 月次 前年同月比（全指標）</h2>
+<div id="t2026"></div>
+
+<h2>2025年 月次 前年同月比（参考）</h2>
+<div id="t2025"></div>
+
+<div class="note">
+<p>本ページは情報提供を目的としたものであり、投資勧誘・投資助言ではありません。</p>
+</div>
+
+<script>
+(function(){
+  var M=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  var Y2025={
+    'グローバル 生産':[88.7,87.9,88.7,84.6,83.5,102.7,95.8,100.8,100.5,96.1,95.8,110.7],
+    '国内 生産':[95.5,86.8,91.1,80.9,83.2,95.9,98.4,81.8,81.9,80.7,68.4,91.5],
+    '海外 生産':[87.0,88.3,88.1,85.6,83.6,104.5,95.1,104.9,105.6,100.6,103.9,116.6],
+    'グローバル 販売':[94.1,92.2,96.6,92.8,94.0,95.1,100.5,102.8,96.4,95.2,95.1,93.3],
+    '国内 販売(軽含)':[96.7,86.7,88.5,81.0,87.8,96.3,81.1,77.8,78.4,77.9,73.5,90.0],
+    '海外 販売':[93.6,93.3,98.2,94.4,94.8,94.9,104.3,106.6,100.1,97.8,98.5,93.6],
+    '輸出':[72.9,88.4,95.2,85.2,69.7,80.4,114.7,115.0,66.4,72.0,74.9,78.2]
+  };
+  var Y2026={
+    'グローバル 生産':[92.8,88.3,105.4,95.8,91.4,85.5,null,null,null,null,null,null],
+    '国内 生産':[90.5,94.9,99.5,105.4,103.1,101.3,null,null,null,null,null,null],
+    '海外 生産':[93.4,86.4,107.0,93.4,88.9,81.7,null,null,null,null,null,null],
+    'グローバル 販売':[100.6,92.6,93.0,92.4,89.7,91.7,null,null,null,null,null,null],
+    '国内 販売(軽含)':[88.9,100.4,99.9,102.4,93.6,106.5,null,null,null,null,null,null],
+    '海外 販売':[102.8,91.2,91.8,91.2,89.3,89.4,null,null,null,null,null,null],
+    '輸出':[119.1,116.2,87.6,85.5,121.9,119.4,null,null,null,null,null,null]
+  };
+  function cell(v){
+    if(v===null) return '<td class="num">—</td>';
+    return '<td class="num '+(v>=100?'hi':'lo')+'">'+v.toFixed(1)+'</td>';
+  }
+  function table(data){
+    var h='<table><thead><tr><th>指標</th>';
+    M.forEach(function(m){h+='<th class="num">'+m+'</th>'});
+    h+='</tr></thead><tbody>';
+    Object.keys(data).forEach(function(k){
+      h+='<tr><td>'+k+'</td>';
+      data[k].forEach(function(v){h+=cell(v)});
+      h+='</tr>';
+    });
+    return h+'</tbody></table>';
+  }
+  document.getElementById('t2026').innerHTML=table(Y2026);
+  document.getElementById('t2025').innerHTML=table(Y2025);
+
+  var hi='';
+  ['グローバル 販売','国内 販売(軽含)','海外 販売'].forEach(function(k){
+    hi+='<p style="margin:1.5rem 0 .5rem"><strong>'+k+'</strong></p><div class="cards">';
+    for(var i=0;i<6;i++){
+      var v=Y2026[k][i];
+      var cls=v===null?'':(v>=100?'pos':'neg');
+      hi+='<div class="card '+cls+'"><span class="lbl">'+M[i]+'</span><span class="val">'+
+          (v===null?'未公表':v.toFixed(1)+'%')+'</span><span class="sub">'+
+          (v===null?'':((v-100>=0?'+':'')+(v-100).toFixed(1)+'pt'))+'</span></div>';
+    }
+    hi+='</div>';
+  });
+  document.getElementById('highlight').innerHTML=hi;
+})();
+</script>

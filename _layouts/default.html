@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title and page.title != site.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<style>
+:root{
+  --bg:#fbfbf9; --fg:#1c1c1a; --muted:#6b6b64; --rule:#e2e1db;
+  --accent:#1f5673; --quote-bg:#f2f2ee; --code-bg:#f0efea;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#15161a; --fg:#e6e5e0; --muted:#9b9a93; --rule:#2e3037;
+         --accent:#7fb3cc; --quote-bg:#1d1f25; --code-bg:#22242b; }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  font-size:17px; line-height:1.9; letter-spacing:.02em;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.25rem}
+header.site{border-bottom:1px solid var(--rule);margin-bottom:3rem}
+header.site .wrap{padding-top:1.25rem;padding-bottom:1.25rem}
+header.site a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:.06em}
+header.site a:hover{color:var(--accent)}
+main h1{font-size:1.8rem;line-height:1.5;margin:0 0 .6rem;letter-spacing:.01em}
+main h2{font-size:1.3rem;line-height:1.6;margin:3.5rem 0 1rem;padding-top:1rem;border-top:1px solid var(--rule)}
+main h3{font-size:1.08rem;margin:2.5rem 0 .8rem;color:var(--accent)}
+main h1+h2{border-top:none;margin-top:.4rem;padding-top:0;font-size:1.05rem;color:var(--muted);font-weight:500}
+p{margin:0 0 1.5rem}
+a{color:var(--accent)}
+hr{border:none;border-top:1px solid var(--rule);margin:3rem 0}
+blockquote{
+  margin:2rem 0;padding:1.25rem 1.5rem;background:var(--quote-bg);
+  border-left:3px solid var(--accent);border-radius:2px;
+}
+blockquote p:last-child{margin-bottom:0}
+blockquote p{font-size:.95rem}
+img{max-width:100%;height:auto;display:block;margin:2rem auto;border-radius:3px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.7;margin:2rem 0}
+th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left}
+th{background:var(--quote-bg);font-weight:600}
+.scroll{overflow-x:auto;margin:2rem 0}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:3px;font-size:.9em}
+ul,ol{margin:0 0 1.5rem;padding-left:1.5rem}
+li{margin-bottom:.4rem}
+footer.site{border-top:1px solid var(--rule);margin-top:5rem;padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
+.index-list{list-style:none;padding:0}
+.index-list li{margin-bottom:2rem}
+.index-list a{font-size:1.1rem;font-weight:600;text-decoration:none}
+.index-list a:hover{text-decoration:underline}
+.index-list .desc{display:block;color:var(--muted);font-size:.9rem;margin-top:.3rem;line-height:1.8}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap"><a href="{{ '/' | relative_url }}">{% if page.url != "/" %}← {% endif %}{{ site.title }}</a></div></header>
+<main><div class="wrap">{{ content }}</div></main>
+<footer class="site"><div class="wrap">
+<p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
+</div></footer>
+<script>
+document.querySelectorAll('main table').forEach(function(t){
+  var d=document.createElement('div'); d.className='scroll';
+  t.parentNode.insertBefore(d,t); d.appendChild(t);
+});
+</script>
+</body>
+</html>

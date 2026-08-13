@@ -1,0 +1,10 @@
+title: 日産分析ノート
+description: 日産自動車をめぐる分析ノート — 決算数字の逆算と、現場からの検証
+lang: ja
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+defaults:
+  - scope: { path: "" }
+    values: { layout: "default" }

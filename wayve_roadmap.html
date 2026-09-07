@@ -156,7 +156,7 @@
 
 <header>
   <div class="wrap">
-    <div class="eyebrow"><span>技術ロードマップ整理</span><span>·</span><b>WAYVE × NISSAN</b><span>·</span><span class="mono">2025–2027</span></div>
+    <div class="eyebrow"><span>技術ロードマップ整理</span><span>·</span><b>WAYVE × NISSAN</b><span>·</span><span class="mono">2025–2029</span></div>
     <h1>ソフトウェア融合<span class="x">/</span>ロードマップと課題</h1>
     <p class="lede">クルマを<em>物流コンテナ</em>と<em>レゴブロック</em>へ。規格化された箱に積み替え、開いた継ぎ手で組み替える ── 日産のSDV基盤に、Wayveの頭脳を載せるまでの道筋と、まだ嵌っていないブロック。</p>
     <div class="heroblocks">
@@ -194,9 +194,9 @@
 <!-- ROADMAP -->
 <section class="reveal">
   <div class="wrap">
-    <div class="stag"><i>01</i> &nbsp;ロードマップ / 四つの局面</div>
-    <h2>基盤づくりから AI-DV まで</h2>
-    <p class="sub">公開情報から再構成した時間軸。順序そのものが意味を持つ ── 下の層（クラウドCI・OS内製）が固まらないと、上の層（AIドライブ）は載らない。</p>
+    <div class="stag"><i>01</i> &nbsp;ロードマップ / 五つの局面</div>
+    <h2>基盤づくりから AI-DV、その先の二社共通基盤まで</h2>
+    <p class="sub">公開情報から再構成した時間軸。順序そのものが意味を持つ ── 下の層（クラウドCI・OS内製）が固まらないと、上の層（AIドライブ）は載らない。局面3（2027年度・AI-DV）と局面4（2029年度以降・ホンダとの共通化）は、同じ基盤の上に引かれた<b>別々の時間軸</b>である点に注意。</p>
 
     <div class="phase">
       <div class="pmark"><div class="pn">0</div><div class="pd mono">2025 — NOW</div><div class="ph">基盤の公開</div></div>
@@ -230,10 +230,10 @@
         <h4>所有権が日産＋標準へ移る</h4>
         <ul>
           <li style="--c:var(--nissan)">Product Image まで日産自身が握り、Tier1ロックインから脱却。</li>
-          <li style="--c:var(--open)"><b>JASPAR</b>等で他社OEMともAPIを共通化（オープン化）し、3rdパーティが参入できるエコシステムへ。<b>ホンダが日産の基盤を採用</b>（2026）で、この「他社OEM」が具体化。</li>
+          <li style="--c:var(--open)"><b>JASPAR</b>等で他社OEMともAPIを共通化（オープン化）し、3rdパーティが参入できるエコシステムへ。<b>2026年8月31日、ホンダとECU・ソフトウエアの共同開発契約を締結</b>し、この「他社OEM」に具体名が入った。</li>
           <li style="--c:var(--aosp)"><b>コンテナ単位OTA</b>でアプリを迅速・安全に更新。CTS / VTS / XTS の認証を、クラウドCIとHILSで回す。</li>
         </ul>
-        <div class="ptags"><em>JASPAR</em><em>container OTA</em><em>CTS / VTS / XTS</em><em>Honda 合流</em></div>
+        <div class="ptags"><em>JASPAR</em><em>container OTA</em><em>CTS / VTS / XTS</em><em>Honda 共同開発契約 2026-08-31</em></div>
       </div>
     </div>
 
@@ -247,6 +247,19 @@
           <li style="--c:var(--open)"><b>開発へのAI活用</b>：Copilot / Cursor / ChatGPT で開発自体を高速化。「作るAI」と「載せるAI」を同じ射程に。</li>
         </ul>
         <div class="ptags"><em>End-to-End</em><em>EV / PHEV / HV / ICE</em><em>embodiment transfer</em></div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="pmark"><div class="pn">4</div><div class="pd mono">FY2029 以降</div><div class="ph">二社共通の基盤</div></div>
+      <div class="pbody">
+        <h4>ホンダとのECU・コアOS共通化</h4>
+        <ul>
+          <li style="--c:var(--open)"><b>2026年8月31日、共同開発契約を締結</b>。共通化の対象は<b>複数のECU、車載OS、ミドルウェア、車両制御ソフトの主要部分</b>。</li>
+          <li style="--c:var(--nissan)">これらを載せる<b>E&amp;Eアーキテクチャー</b>を、2029年度以降の両社の次世代SDVに適用する目標。</li>
+          <li style="--c:var(--aosp)">日産は<b>Scalable Open Software Platformの独自開発を継続</b>。共通化は「自社基盤の放棄」ではなく、その上に<b>もう一本の時間軸</b>が引かれた、という構図。</li>
+        </ul>
+        <div class="ptags"><em>ECU 共通化</em><em>core OS</em><em>middleware</em><em>E&amp;E architecture</em></div>
       </div>
     </div>
   </div>
@@ -368,18 +381,33 @@
   <div class="wrap">
     <div class="stag"><i>05</i> &nbsp;追記 / ホンダ合流 ―― 「Open」が意味を回収した瞬間</div>
     <h2>凸凹が規格化されたことで、二社の箱に同じブロックが嵌まる</h2>
-    <p class="sub">日産のScalable Open Software Platformを、ホンダが採用する。「Open」は3rdパーティ（Wayve）に開くだけでなく、他のOEM（ホンダ）にも開く設計だった ── その答え合わせが、この一件で完了した。</p>
+    <p class="sub">2026年8月31日、日産とホンダが次世代SDV向けECU・ソフトウエアの<b>共同開発契約を締結</b>。共通化の対象は複数のECU、車載OS、ミドルウェア、車両制御ソフトの主要部分で、適用は2029年度以降。「Open」は3rdパーティ（Wayve）に開くだけでなく、他のOEM（ホンダ）にも開く設計だった ── その答え合わせが、契約という形で降りてきた。</p>
+
+    <div class="tier3">
+      <div class="t-clear">
+        <div class="lb">Fact — 公式</div>
+        <p>2026-08-31 共同開発契約。<b>ECU＋車載OS＋ミドルウェア＋車両制御ソフトの主要部分</b>を共通化し、2029年度以降のE&amp;Eアーキテクチャーに適用。リリース上は「両社の技術的知見と人材を融合する」共同開発であり、どちらの技術がベースかは書かれていない。</p>
+      </div>
+      <div class="t-live">
+        <div class="lb">Reported — 報道</div>
+        <p>日産が開発してきた<b>技術の一部をベースに</b>、ホンダが対価を支払って共同開発する ── 日経・共同・時事が2026年7月に一致して報じた線。「日産のOSを軸に」という表現もここから。</p>
+      </div>
+      <div class="t-debt">
+        <div class="lb">Reading — 本ページの読み</div>
+        <p>ホンダは<b>「日産のコアOSを使う」という言い方を公式には否定</b>している。ただし対価とベース技術の存在は否定されておらず、否定は弱い。<b>実質は日産のコアOSに寄る</b>と読む。</p>
+      </div>
+    </div>
 
     <div class="meta2">
       <div class="mcard cn">
         <div class="tag">Signal</div>
         <h3>過剰に開いていた設計の、正体</h3>
-        <p>SDK / Data / OS を三層で切り出し、Vehicle APIをOEM横断で標準化し、コンテナで機能を規格箱に詰める ── 一社専用にしては「開きすぎ」だった設計。ホンダ採用で、その過剰さの理由が回収された。</p>
+        <p>SDK / Data / OS を三層で切り出し、Vehicle APIをOEM横断で標準化し、コンテナで機能を規格箱に詰める ── 一社専用にしては「開きすぎ」だった設計。ホンダとの契約で、その過剰さの理由が回収された。</p>
       </div>
       <div class="mcard lg">
         <div class="tag">Meaning</div>
-        <h3>JASPAR API共通化の、着地点</h3>
-        <p>「他社OEMともAPIを共通化」と抽象的に語られていた将来像に、具体名が入った。凸凹（Vehicle API）が規格化されたことで、日産の箱にもホンダの箱にも、同じブロックが嵌まる。</p>
+        <h3>日産は独自開発を降りない</h3>
+        <p>共通化は基盤の明け渡しではない。日産は<b>Scalable Open Software Platformの独自開発を継続</b>する。自社基盤（2027年度のAI-DV）と、二社共通の基盤（2029年度以降）── 時間軸の違う二本が並走する。</p>
       </div>
     </div>
 
@@ -400,6 +428,18 @@
       <p>凸凹（Vehicle API）を作った側（日産）、その凸凹を採用した側（ホンダ）、凸凹に合わせてブロック（AI Driver）を作った側（Wayve）── レゴが機能する三者の役割分担が揃った。日産が単なる「OEM」ではなく<b>プラットフォーマー</b>として立てるかどうか、という問いに対して、初めての具体的な"顧客OEM"が現れた。R-4（Tier1脱却）の実行リスクも、外部OEMが乗る前提で作った基盤なら、内製化の後戻りが極めて困難になる ── 「引き返せなくなる」意味で、開放が組織の意思決定を縛る効果もある。</p>
       <div class="watch">ホンダ以外のOEM（三菱、ルノー、その先）が乗るか。一社限定なら「Open」の意味は半分に留まる</div>
     </div>
+
+    <div class="risk" style="border-left-color:var(--risk);margin-top:12px">
+      <div class="rh"><span class="rn">W-4</span><h4>二本の時間軸の、あいだの三年</h4></div>
+      <p>共通化の適用は<b>2029年度以降</b>。一方、日産自身のAI-DV（Wayve搭載）は<b>2027年度</b>。つまりホンダとの共通基盤は、Re:Nissanの再建期間には間に合わない。この協業が今期・来期のP/Lに効くとすれば、それは共通化の果実ではなく<b>開発費の分担</b>のほうです。逆に言えば、2027年度のAIドライブは日産が単独で通さなければならず、<b>ホンダ合流はその難易度を一切下げない</b>。ここを混ぜて評価すると、協業の意味を過大に見積もることになります。</p>
+      <div class="watch">2027年度のAI-DVが単独で立ち上がるか。共通化の効果はその二年後からしか出ない</div>
+    </div>
+
+    <div class="risk" style="border-left-color:var(--tier1);margin-top:12px">
+      <div class="rh"><span class="rn" style="color:var(--tier1)">W-5</span><h4>コアOSの帰属と、責任分担の線引き</h4></div>
+      <p>「日産の技術をベースに、両社で共同開発する」という形は、<b>誰がProduct Imageを握るのか</b>という問いを再び開きます。R155 / R156 の型式認証は車両メーカーごとに取るもので、共通OSであっても責任は分かれる。ホンダ側が自社ミドルウェアや独自要件を残す範囲が広がるほど、「共通」は名目に近づき、<b>二社分のフォークを日産が維持する</b>という最悪形もありうる。R-4（Tier1脱却）で挙げた組織の律速が、今度は<b>社外との分担</b>という形で戻ってきます。</p>
+      <div class="watch">共通部分の範囲がどこまで公表されるか。フォークが増えれば、開発費の分担は逆に負担になる</div>
+    </div>
   </div>
 </section>
 
@@ -411,10 +451,12 @@
       Wayve — AI-500 Roadshow（500都市 / 219 zero-shot, 2025）, GAIA-3 launch（2025-12）, Nissan採用発表（2025-04）, Uber London（2025）<br>
       Nissan × AWS — Nissan Scalable Open Software Platform / re:Invent 2025<br>
       Nissan — Concept of Nissan's SDV, 段階的な内製開発への移行, AI-DV（TECH PLAY 2026-01 / 2026-06）<br>
-      Honda — 日産Scalable Open Software Platform採用（2026）<br>
+      Honda × Nissan — 次世代SDV向けECU・ソフトウエアの共同開発契約（2026-08-31、2029年度以降適用）／<br>
+      　「日産の技術をベースに共同開発」報道（日本経済新聞・共同通信・時事通信 2026-07-26）／<br>
+      　コアOSの扱いと日産の独自開発継続（日経クロステック 2026-09-03）<br>
       規格 — UNECE R155 / R156, ISO 26262（ASIL）, ISO 21434, JASPAR
     </p>
-    <p class="disc">公開情報・登壇資料・報道をもとに再構成した整理用ドキュメント。数値・時期は発表時点のもので、量産展開の実績は別途検証を要する。投資判断ではなく、論点整理を目的とする。</p>
+    <p class="disc">公開情報・登壇資料・報道をもとに再構成した整理用ドキュメント。数値・時期は発表時点のもので、量産展開の実績は別途検証を要する。ホンダが日産のコアOSを土台にする、という点は<b>公式発表ではなく報道と本ページの読み</b>であり、ホンダ側は公式にはその表現を否定している（セクション05の Fact / Reported / Reading の区別を参照）。投資判断ではなく、論点整理を目的とする。</p>
   </div>
 </footer>
 

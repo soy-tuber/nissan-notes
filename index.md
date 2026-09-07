@@ -35,7 +35,7 @@ title: 日産分析ノート
 <span class="desc">トヨタTHSと日産e-POWERを、遊星機構と「捨てる思想」という対比から読み解く技術対談。第三世代e-POWERの実力、北米ローグe-POWER、そして日産本体の現在地まで。</span></li>
 
 <li><a href="wayve_roadmap.html">Wayve × Nissan ロードマップ</a>
-<span class="desc">英Wayveとの提携によるEnd-to-End AI自動運転の導入計画と、その課題の整理。</span></li>
+<span class="desc">英Wayveとの提携によるEnd-to-End AI自動運転の導入計画と、その課題の整理。2026年8月のホンダとのECU・車載OS共同開発契約（2029年度以降適用）を踏まえ、自社基盤と二社共通基盤という二本の時間軸を追記。</span></li>
 
 <li><a href="dual_core_shinsho.pdf">デュアルコア・モビリティ（PDF版）</a>
 <span class="desc">上記の新書体裁版。1.7MB。</span></li>

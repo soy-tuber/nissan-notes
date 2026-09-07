@@ -255,7 +255,7 @@
       <div class="pbody">
         <h4>ホンダとのECU・コアOS共通化</h4>
         <ul>
-          <li style="--c:var(--open)"><b>2026年8月31日、共同開発契約を締結</b>。共通化の対象は<b>複数のECU、車載OS、ミドルウェア、車両制御ソフトの主要部分</b>。</li>
+          <li style="--c:var(--open)"><b>2026年8月31日、共同開発契約を締結</b>。対象は3ドメイン型E/Eアーキテクチャーの<b>「コア」ドメインのみ</b> ── 統合ECU・車載OS・ミドルウエア・車載制御ソフトの4層。<b>AD/ADASとIVIは各社の差異化領域</b>として残る。</li>
           <li style="--c:var(--nissan)">これらを載せる<b>E&amp;Eアーキテクチャー</b>を、2029年度以降の両社の次世代SDVに適用する目標。</li>
           <li style="--c:var(--aosp)">日産は<b>Scalable Open Software Platformの独自開発を継続</b>。共通化は「自社基盤の放棄」ではなく、その上に<b>もう一本の時間軸</b>が引かれた、という構図。</li>
         </ul>
@@ -321,7 +321,7 @@
       <div class="connector"><span>Vehicle API ／ SDK</span></div>
       <div class="ib" style="border-left:3px solid var(--nissan)">
         <span class="ic" style="background:var(--nissan)">PLATFORM</span>
-        <div><h4>Nissan Scalable Open Software Platform</h4><p>SDK / Data / OS。Android Automotive、コンテナOTA、全センサーへの開放アクセス。EV・PHEV・HV・ICE 全車に同じ基盤。</p></div>
+        <div><h4>Nissan Scalable Open Software Platform</h4><p>SDK / Data / OS。Android Automotive、コンテナOTA、全センサーへの開放アクセス。EV・PHEV・HV・ICE 全車に同じ基盤。車載OS「<b>スケーラブルオープンOS</b>」の中身は、車両機能へのアクセスを標準化した<b>Vehicle API（車載API）</b>の下に、<b>Linux（オープンソース）／RTOS（起動速度）／AUTOSAR（業界標準）</b>を用途別に並べる構成。その下がセントラルECU＋各ECUのE/Eアーキテクチャー。</p></div>
       </div>
       <div class="connector"><span>テレメトリ ／ デジタルツイン</span></div>
       <div class="ib" style="border-left:3px solid var(--aosp)">
@@ -380,13 +380,13 @@
 <section class="reveal">
   <div class="wrap">
     <div class="stag"><i>05</i> &nbsp;追記 / ホンダ合流 ―― 「Open」が意味を回収した瞬間</div>
-    <h2>凸凹が規格化されたことで、二社の箱に同じブロックが嵌まる</h2>
-    <p class="sub">2026年8月31日、日産とホンダが次世代SDV向けECU・ソフトウエアの<b>共同開発契約を締結</b>。共通化の対象は複数のECU、車載OS、ミドルウェア、車両制御ソフトの主要部分で、適用は2029年度以降。「Open」は3rdパーティ（Wayve）に開くだけでなく、他のOEM（ホンダ）にも開く設計だった ── その答え合わせが、契約という形で降りてきた。</p>
+    <h2>二社の箱に同じブロックが嵌まる ── ただし、真ん中の一段だけ</h2>
+    <p class="sub">2026年8月31日、日産とホンダが次世代SDV向けECU・ソフトウエアの<b>共同開発契約を締結</b>。ただし対象は3ドメインのうち<b>「コア」ひとつだけ</b>で、適用は2029年度以降。「Open」は3rdパーティ（Wayve）に開くだけでなく、他のOEM（ホンダ）にも開く設計だった ── その答え合わせが、限定つきで降りてきた。</p>
 
     <div class="tier3">
       <div class="t-clear">
         <div class="lb">Fact — 公式</div>
-        <p>2026-08-31 共同開発契約。<b>ECU＋車載OS＋ミドルウェア＋車両制御ソフトの主要部分</b>を共通化し、2029年度以降のE&amp;Eアーキテクチャーに適用。リリース上は「両社の技術的知見と人材を融合する」共同開発であり、どちらの技術がベースかは書かれていない。</p>
+        <p>2026-08-31 共同開発契約。<b>3ドメイン型E/Eアーキテクチャーのうち「コア」ドメインのみ</b>が対象で、統合ECU・車載OS・ミドルウエア・車載制御ソフトの4層を共通化。適用は2029年度以降。リリース上は「両社の技術的知見と人材を融合する」共同開発であり、どちらの技術がベースかは書かれていない。</p>
       </div>
       <div class="t-live">
         <div class="lb">Reported — 報道</div>
@@ -395,6 +395,36 @@
       <div class="t-debt">
         <div class="lb">Reading — 本ページの読み</div>
         <p>ホンダは<b>「日産のコアOSを使う」という言い方を公式には否定</b>している。ただし対価とベース技術の存在は否定されておらず、否定は弱い。<b>実質は日産のコアOSに寄る</b>と読む。</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--g);font-weight:600;font-size:18px;margin:26px 0 4px">共通化の範囲 ―― 3ドメインのうち、真ん中の一つだけ</h3>
+    <p class="sub">E/Eアーキテクチャーは AD/ADAS ／ コア ／ IVI の3ドメイン。共同開発の対象は<b>コアだけ</b>で、クルマの性格を決める両端（自動運転と車内体験）は各社の差異化領域として残る。「まず一つの領域から」という着手の形そのものが、この協業の射程を規定している。</p>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--open)"></i>共同開発（日産 × ホンダ）</span>
+      <span><i class="sw" style="background:var(--tier1)"></i>差異化（各社が自前で持つ）</span>
+    </div>
+    <div class="stacks">
+      <div class="col">
+        <div class="ct">AD / ADAS</div><div class="cs">差異化 — 各社</div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">車載制御ソフト<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">ミドルウエア<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">車載OS<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">統合ECU<span class="o">各社</span></div>
+      </div>
+      <div class="col" style="border-color:var(--open);box-shadow:0 0 0 1px var(--open) inset">
+        <div class="ct" style="color:var(--open)">コア</div><div class="cs">共同開発 — 2029年度以降</div>
+        <div class="lay" style="background:var(--open)">車載制御ソフト<span class="o">共通</span></div>
+        <div class="lay" style="background:var(--open)">ミドルウエア<span class="o">共通</span></div>
+        <div class="lay" style="background:var(--open)">車載OS<span class="o">共通</span></div>
+        <div class="lay" style="background:var(--open)">統合ECU<span class="o">共通</span></div>
+      </div>
+      <div class="col">
+        <div class="ct">IVI</div><div class="cs">差異化 — 各社</div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">車載制御ソフト<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">ミドルウエア<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">車載OS<span class="o">各社</span></div>
+        <div class="lay dim" style="background:var(--ink);border:1px solid var(--line2)">統合ECU<span class="o">各社</span></div>
       </div>
     </div>
 
@@ -412,20 +442,20 @@
     </div>
 
     <div class="risk" style="border-left-color:var(--wayve);margin-top:22px">
-      <div class="rh"><span class="rn" style="color:var(--wayve)">W-1</span><h4>Wayveにとって、出口が二社連合の全車種へ倍化</h4></div>
-      <p>WayveのAI Driverは<b>駆動方式に非依存</b>で、Vehicle API越しに接続する。OSが共通なら、その上に乗るAI Driverも共通になりうる。日産の全パワートレイン（EV/PHEV/HV/ICE）に加えて、<b>ホンダの全パワートレインにも同じAPIで載る可能性</b>が開いた。「Wayveが日産を選んだ理由」の一番目 ── 出口が広い ── が、一社の全車種から二社連合の全車種へ拡大した。</p>
-      <div class="watch">ホンダ側のAI Driver採用が、単なるOS共通化から、AI層まで揃うところまで進むか</div>
+      <div class="rh"><span class="rn" style="color:var(--wayve)">W-1</span><h4>Wayveの「出口が倍になる」は、まだ成立しない</h4></div>
+      <p>共通化されるのは<b>コアドメインだけ</b>で、<b>AD/ADASは差異化領域として各社に残る</b>。WayveのAI Driverが載るのはまさにそのAD/ADAS側なので、コアの共通化から自動的にホンダ車へ広がる、という筋は通らない。効くとすれば間接的な二つだけ ── ①下のコア（統合ECU・車載OS・車載API）が揃えば、AD/ADASドメインが車両機能を叩く<b>継ぎ手の形が二社で同じになる</b>ので、移植の工事は軽くなる。②AD/ADASを差異化に残したということは、<b>そこは外から買ってもよい領域</b>だということでもある。<b>出口は倍にならないが、扉の規格は揃う</b>。当初の「二社連合の全車種へ倍化」という読みは、ここで下方修正する。</p>
+      <div class="watch">ホンダがAD/ADASを自前で通すのか、外部（Wayveを含む）を入れるのか。コア共通化はその判断を早める材料にしかならない</div>
     </div>
 
     <div class="risk" style="border-left-color:var(--nissan);margin-top:12px">
       <div class="rh"><span class="rn" style="color:var(--nissan)">W-2</span><h4>「駆動方式は本質でない」が、業界構造として実装される</h4></div>
-      <p>ホンダと日産は主力パワートレインの構成が違う ── ホンダはパラレルHVのe:HEVが強く、日産はシリーズのe-POWER。それでも同じOSで共通化するということは、<b>OS層が駆動方式の差を吸収する設計になっている</b>ことの証明。駆動の差はVehicle APIの下に沈み、上のソフトからは見えない。「駆動方式でメーカーを分ける議論」がSDVの世界では意味を持たなくなる、その転換点。</p>
+      <p>ホンダと日産は主力パワートレインの構成が違う ── ホンダはパラレルHVのe:HEVが強く、日産はシリーズのe-POWER。それでも<b>車両制御ソフトを含むコアドメインごと共通化する</b>ということは、その層が駆動方式の差を吸収する設計になっていることの証明。差異化に残したのが両端（AD/ADASとIVI）で、真ん中の車両制御を共通にできると判断した ── ここが今回いちばん強い技術的シグナルです。駆動の差はVehicle APIの下に沈み、上のソフトからは見えない。「駆動方式でメーカーを分ける議論」がSDVの世界では意味を持たなくなる、その転換点。</p>
       <div class="watch">Vehicle API の抽象化が、実車のECU / センサー配線レベルまで本当に吸収できるか</div>
     </div>
 
     <div class="risk" style="border-left-color:var(--open);margin-top:12px">
       <div class="rh"><span class="rn" style="color:var(--open)">W-3</span><h4>プラットフォーム戦略の、教科書的な着地</h4></div>
-      <p>凸凹（Vehicle API）を作った側（日産）、その凸凹を採用した側（ホンダ）、凸凹に合わせてブロック（AI Driver）を作った側（Wayve）── レゴが機能する三者の役割分担が揃った。日産が単なる「OEM」ではなく<b>プラットフォーマー</b>として立てるかどうか、という問いに対して、初めての具体的な"顧客OEM"が現れた。R-4（Tier1脱却）の実行リスクも、外部OEMが乗る前提で作った基盤なら、内製化の後戻りが極めて困難になる ── 「引き返せなくなる」意味で、開放が組織の意思決定を縛る効果もある。</p>
+      <p>凸凹（Vehicle API）を作った側（日産）、その凸凹を採用した側（ホンダ）、凸凹に合わせてブロック（AI Driver）を作った側（Wayve）── レゴが機能する三者の役割分担が揃った。日産が単なる「OEM」ではなく<b>プラットフォーマー</b>として立てるかどうか、という問いに対して、コアひとつ分とはいえ、初めての具体的な"顧客OEM"が現れた。R-4（Tier1脱却）の実行リスクも、外部OEMが乗る前提で作った基盤なら、内製化の後戻りが極めて困難になる ── 「引き返せなくなる」意味で、開放が組織の意思決定を縛る効果もある。</p>
       <div class="watch">ホンダ以外のOEM（三菱、ルノー、その先）が乗るか。一社限定なら「Open」の意味は半分に留まる</div>
     </div>
 
@@ -453,7 +483,9 @@
       Nissan — Concept of Nissan's SDV, 段階的な内製開発への移行, AI-DV（TECH PLAY 2026-01 / 2026-06）<br>
       Honda × Nissan — 次世代SDV向けECU・ソフトウエアの共同開発契約（2026-08-31、2029年度以降適用）／<br>
       　「日産の技術をベースに共同開発」報道（日本経済新聞・共同通信・時事通信 2026-07-26）／<br>
-      　コアOSの扱いと日産の独自開発継続（日経クロステック 2026-09-03）<br>
+      　コアOSの扱いと日産の独自開発継続（日経クロステック 2026-09-03）／<br>
+      　「まず1つの領域から」共同開発はコアドメインのみ・3ドメイン型E/Eアーキテクチャー図・<br>
+      　スケーラブルオープンOSの構成図（日経クロステック 2026-09-07）<br>
       規格 — UNECE R155 / R156, ISO 26262（ASIL）, ISO 21434, JASPAR
     </p>
     <p class="disc">公開情報・登壇資料・報道をもとに再構成した整理用ドキュメント。数値・時期は発表時点のもので、量産展開の実績は別途検証を要する。ホンダが日産のコアOSを土台にする、という点は<b>公式発表ではなく報道と本ページの読み</b>であり、ホンダ側は公式にはその表現を否定している（セクション05の Fact / Reported / Reading の区別を参照）。投資判断ではなく、論点整理を目的とする。</p>

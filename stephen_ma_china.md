@@ -1,5 +1,6 @@
 ---
 title: スティーブン・マーと中国日産
+cast: racer-b radio-a painter-a mechanic-b
 ---
 
 # スティーブン・マー（馬智欣）と中国日産 —— 日産を救うのは中国かもしれない

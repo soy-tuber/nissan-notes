@@ -24,6 +24,7 @@ body{
 .wrap{max-width:44rem;margin:0 auto;padding:0 1.25rem}
 .wide .wrap{max-width:64rem}
 header.site{border-bottom:1px solid var(--rule);margin-bottom:3rem}
+body.home header.site{margin-bottom:1.25rem}
 header.site .wrap{padding-top:1.25rem;padding-bottom:1.25rem}
 header.site a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:.06em}
 header.site a:hover{color:var(--accent)}
@@ -49,6 +50,7 @@ code{background:var(--code-bg);padding:.1em .35em;border-radius:3px;font-size:.9
 ul,ol{margin:0 0 1.5rem;padding-left:1.5rem}
 li{margin-bottom:.4rem}
 footer.site{border-top:1px solid var(--rule);margin-top:5rem;padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
+body.home footer.site{margin-top:1.75rem;padding:1.1rem 0 1.5rem}
 .index-list{list-style:none;padding:0}
 .index-list li{margin-bottom:2rem}
 .index-list a{font-size:1.1rem;font-weight:600;text-decoration:none}
@@ -73,11 +75,68 @@ footer.site{border-top:1px solid var(--rule);margin-top:5rem;padding:2rem 0 3rem
 .ctrl input[type=number]{width:100%;padding:.35rem .5rem;border:1px solid var(--rule);border-radius:4px;background:var(--bg);color:var(--fg);font-size:1rem}
 td.num,th.num{text-align:right;font-feature-settings:"tnum"}
 .hi{background:rgba(26,127,90,.14)} .lo{background:rgba(180,69,60,.14)}
+
+/* ===== キャスト（カスタムカー・ギャング）装飾 ===== */
+.cast-fig{filter:drop-shadow(0 2px 4px rgba(0,0,0,.10))}
+@media (prefers-color-scheme: dark){
+  .cast-fig{filter:drop-shadow(0 0 1px rgba(255,255,255,.45)) drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+}
+
+/* 余白（ガター）に散らす装飾。本文の外側だけに置き、狭い画面では消す */
+.deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;display:none}
+.deco img{position:absolute;width:var(--w,11rem);height:auto;opacity:.92}
+.deco .d1{top:2%;  right:calc(50% + 23rem); --w:12rem; transform:rotate(-3deg)}
+.deco .d2{top:22%; left: calc(50% + 23rem); --w:10.5rem; transform:rotate(3deg)}
+.deco .d3{top:48%; right:calc(50% + 23rem); --w:11rem; transform:rotate(2deg)}
+.deco .d4{top:72%; left: calc(50% + 23rem); --w:12rem; transform:rotate(-2deg)}
+.deco .d5{top:90%; right:calc(50% + 23rem); --w:10rem; transform:rotate(-4deg)}
+@media (min-width:1180px){ .deco{display:block} }
+.wide .deco .d1,.wide .deco .d3,.wide .deco .d5{right:calc(50% + 33rem)}
+.wide .deco .d2,.wide .deco .d4{left:calc(50% + 33rem)}
+@media (max-width:1560px){ .wide .deco{display:none} }
+main{position:relative}
+main .wrap{position:relative;z-index:1}
+
+/* ===== トップページ ===== */
+body.home .wrap{max-width:96rem}
+.hero{display:grid;grid-template-columns:minmax(20rem,1fr) auto;gap:1.2rem 2.5rem;align-items:end;margin:0 0 .3rem}
+.hero h1{font-size:clamp(1.6rem,2.4vw,2.2rem);margin:0 0 .7rem}
+.hero .lead{color:var(--muted);font-size:.95rem;line-height:1.85;margin:0;max-width:40rem}
+.cast-band{--h:clamp(110px,21vh,240px);display:flex;align-items:flex-end;gap:clamp(.2rem,.8vw,1rem);height:var(--h);position:relative}
+.cast-band::after{content:"";position:absolute;left:-1rem;right:-1rem;bottom:-2px;border-bottom:1px dashed var(--rule)}
+.cast-band img{height:calc(var(--h) * var(--fh) / 751);margin-bottom:calc(var(--h) * var(--fg) / 751);width:auto}
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr}
+  .cast-band{--h:clamp(96px,22vw,160px);justify-content:center}
+}
+
+/* ===== 記事タイル ===== */
+.sec-head{display:flex;align-items:baseline;gap:.8rem;margin:1.3rem 0 .75rem;padding-top:.6rem;border-top:1px solid var(--rule)}
+.sec-head h2{font-size:1.05rem;margin:0;padding:0;border:none;letter-spacing:.08em}
+.sec-head .n{font-size:.78rem;color:var(--muted);letter-spacing:.08em}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr));gap:.9rem;margin:0 0 .4rem;padding:0;list-style:none}
+.tile{position:relative;display:block;overflow:hidden;text-decoration:none;color:inherit;
+  background:var(--quote-bg);border:1px solid var(--rule);border-radius:8px;
+  padding:.75rem 1rem .85rem;min-height:8rem;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.tile:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.09)}
+.tile .kicker{display:block;font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.3rem;padding-right:4.3rem}
+.tile .t{display:block;font-size:1rem;font-weight:700;line-height:1.55;margin-bottom:.35rem;color:var(--accent);padding-right:4.3rem}
+.tile .d{display:block;font-size:.78rem;line-height:1.75;color:var(--muted);
+  padding-right:4.3rem;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tile .fig{position:absolute;right:.4rem;bottom:0;width:4.5rem;height:5.6rem;
+  object-fit:cover;object-position:50% 0;opacity:.95;pointer-events:none}
+@media (prefers-color-scheme: dark){ .tile:hover{box-shadow:0 6px 18px rgba(0,0,0,.4)} }
+
 </style>
 </head>
-<body class="{% if page.wide %}wide{% endif %}">
+<body class="{% if page.wide %}wide {% endif %}{% if page.home %}home{% endif %}">
 <header class="site"><div class="wrap"><a href="{{ '/' | relative_url }}">{% if page.url != "/" %}← {% endif %}{{ site.title }}</a></div></header>
-<main><div class="wrap">{{ content }}</div></main>
+<main>
+{% assign cast = page.cast | default: "" | split: " " %}{% if cast.size > 0 %}<div class="deco" aria-hidden="true">
+{% for c in cast %}<img class="cast-fig d{{ forloop.index }}" src="{{ '/images/cast/' | append: c | append: '.webp' | relative_url }}" alt="" loading="lazy" decoding="async">
+{% endfor %}</div>{% endif %}
+<div class="wrap">{{ content }}</div></main>
 <footer class="site"><div class="wrap">
 <p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
 </div></footer>

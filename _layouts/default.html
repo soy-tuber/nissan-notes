@@ -64,9 +64,76 @@ main h1+h2{background:none;color:var(--c-mute);padding:0;font-weight:500;
 main p{margin:0 0 var(--s-5)}
 body:not(.home) main p,body:not(.home) main li{font-size:var(--t-read)}
 hr{border:none;border-top:var(--rule-dot);margin:var(--s-7) 0}
-blockquote{margin:var(--s-6) 0;padding:var(--s-4) var(--s-5);background:var(--c-surface);
-  border-radius:var(--r-3)}
+
+/* ===== 【解説】ボックス =====
+   本筋から外れた注釈。原典は「カードではなく吹き出しでぶら下げる」ので
+   .bubble の作法（白地＋黒の囲み罫＋大きい角丸）に寄せる。 */
+blockquote{margin:var(--s-6) 0;padding:var(--s-5);background:var(--c-paper);
+  border:var(--bd-ink);border-radius:var(--r-3)}
+blockquote p{font-size:var(--t-small)}
+blockquote p:first-child strong{display:inline-block;background:var(--c-ink);
+  color:var(--c-ground-ink);font-size:var(--t-label);letter-spacing:0.08em;
+  padding:3px var(--s-2);border-radius:var(--r-1)}
 blockquote p:last-child{margin-bottom:0}
+
+/* ===== 対話の話者 =====
+   段落頭の太字がそのまま話者名になっている（134行/347行）。
+   原典の .chip（黒ベタの小ラベル）に置き換えて、地の文と話者を分ける。
+   対話記事以外では段落頭の太字が別用途なので body.dialogue に限定する。 */
+/* 段落頭の太字は「**用語**　説明」という語釈にも使われている（8件）。
+   見た目で区別できないので front matter の speakers と照合した行だけを話者にする。 */
+main p>strong.speaker:first-child{display:inline-block;background:var(--c-ink);
+  color:var(--c-ground-ink);font-size:var(--t-label);font-weight:700;letter-spacing:0.08em;
+  padding:2px var(--s-2);border-radius:var(--r-1);margin-right:var(--s-1);
+  vertical-align:0.08em}
+.colophon{margin-top:var(--s-6);padding-top:var(--s-5);border-top:var(--rule-dot);
+  font-size:var(--t-small);color:var(--c-mute)}
+.colophon p{font-size:var(--t-small)}
+
+/* ===== 目次 =====
+   本文の h2 から組み立てる。手書きだと本文とずれるし、リンクにならない。 */
+.toc{margin:0 0 var(--s-6);padding:var(--s-4) var(--s-5);
+  background:var(--c-surface);border-radius:var(--r-3)}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{margin:0;border-bottom:var(--rule-dot)}
+.toc li:last-child{border-bottom:none}
+.toc a{display:flex;gap:var(--s-3);align-items:baseline;padding:var(--s-2) 0;
+  text-decoration:none;color:var(--c-body);font-size:var(--t-small)}
+.toc a:hover{text-decoration:underline;text-decoration-color:var(--c-accent);
+  text-decoration-thickness:2px;text-underline-offset:3px}
+.toc a::before{counter-increment:toc;content:counter(toc,decimal-leading-zero);
+  font-family:var(--f-num);font-size:var(--t-label);color:var(--c-mute);flex:none}
+
+/* ===== 章の栞（左ガターに固定）=====
+   13〜15章ある記事で「いま何章か」を出す。版面の外なので本文に食い込まない。 */
+.toc-rail{display:none}
+@media (min-width:1280px){
+  body.has-rail .toc-rail{display:block;position:fixed;top:var(--s-8);
+    left:calc(50% - 36rem);width:12.5rem;max-height:72vh;overflow-y:auto;z-index:2}
+  .toc-rail ol{list-style:none;margin:0;padding:0;counter-reset:rail}
+  .toc-rail a{display:flex;gap:var(--s-2);align-items:baseline;
+    padding:var(--s-1) 0 var(--s-1) var(--s-2);text-decoration:none;
+    color:var(--c-mute);font-size:var(--t-label);line-height:1.5;
+    border-left:2px solid var(--c-line)}
+  .toc-rail a::before{counter-increment:rail;
+    content:counter(rail,decimal-leading-zero);font-family:var(--f-num);flex:none}
+  .toc-rail a:hover{color:var(--c-ink)}
+  /* 現在地。黄は帯ではなく「罫」として使う（文字色にはしない） */
+  .toc-rail a[aria-current]{color:var(--c-ink);font-weight:700;
+    border-left-color:var(--c-accent);border-left-width:4px}
+  /* 栞を出す記事はキャラを右ガターへ寄せる（左は栞が占める） */
+  body.has-rail .deco .d1,body.has-rail .deco .d3,body.has-rail .deco .d5{
+    right:auto;left:calc(50% + 23rem)}
+  /* wide ページは版面が 64rem あるので、この位置だと本文に食い込む。
+     居場所が取れない幅では出さない */
+  body.wide.has-rail .toc-rail{display:none}
+}
+/* wide ページの栞。版面の左端(50% - 32rem)より更に外側に置く */
+@media (min-width:1540px){
+  body.wide.has-rail .toc-rail{display:block;left:calc(50% - 48rem)}
+  body.wide.has-rail .deco .d1,body.wide.has-rail .deco .d3,body.wide.has-rail .deco .d5{
+    right:auto;left:calc(50% + 33rem)}
+}
 main img{max-width:100%;height:auto;display:block;margin:var(--s-6) auto;border-radius:var(--r-3)}
 /* 表は縦罫を引かない。横罫は点線（原典の署名的な罫） */
 .scroll{overflow-x:auto;margin:var(--s-6) 0}
@@ -211,7 +278,7 @@ main .wrap{position:relative;z-index:1}
   object-fit:contain;object-position:100% 100%;pointer-events:none}
 </style>
 </head>
-<body class="{% if page.wide %}wide {% endif %}{% if page.home %}home{% endif %}">
+<body data-speakers="{{ page.speakers }}" class="{% if page.wide %}wide {% endif %}{% if page.speakers %}dialogue {% endif %}{% if page.home %}home{% endif %}">
 <header class="site"><div class="wrap">
 <a href="{{ '/' | relative_url }}">{% if page.url != "/" %}← {% endif %}{{ site.title }}</a>
 <span class="ticker">7201.T</span>
@@ -228,11 +295,82 @@ main .wrap{position:relative;z-index:1}
 {% if page.updated %}<span class="label">Last updated {{ page.updated }}</span>{% endif %}
 <p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
 </div></footer>
+<nav class="toc-rail" aria-label="章の一覧"></nav>
 <script>
 document.querySelectorAll('main table').forEach(function(t){
   var d=document.createElement('div'); d.className='scroll';
   t.parentNode.insertBefore(d,t); d.appendChild(t);
+
+  // 数値列に .num を当てる（等幅数字＋右寄せ）。
+  // Markdown の表にはクラスを書けないので中身から判定する。
+  // 「桁が揃わない表は読めない」はトンマナの明示ルール。
+  var NUM = /^[▲△+\-−]?[\d,]+(\.\d+)?\s*[%％]?$/;
+  var rows = [].slice.call(t.tBodies[0] ? t.tBodies[0].rows : []);
+  if (!rows.length) return;
+  var cols = rows[0].cells.length;
+  for (var c = 0; c < cols; c++) {
+    var vals = rows.map(function(r){ return r.cells[c] ? r.cells[c].textContent.trim() : ''; })
+                   .filter(function(v){ return v && v !== '—' && v !== '-'; });
+    if (!vals.length) continue;
+    var hit = vals.filter(function(v){ return NUM.test(v); }).length;
+    if (hit / vals.length < 0.6) continue;
+    rows.forEach(function(r){ if (r.cells[c]) r.cells[c].classList.add('num'); });
+    var hr = t.tHead && t.tHead.rows[0];
+    if (hr && hr.cells[c]) hr.cells[c].classList.add('num');
+  }
 });
+
+// ---- 目次と章の栞を本文の h2 から組み立てる ----
+// 手書きの目次は本文とずれるうえリンクにならない。id も無ければここで振る。
+(function(){
+  // h1 直後の h2 は章ではなく副題なので除く
+  var hs = [].slice.call(document.querySelectorAll('main .wrap > h2'))
+             .filter(function(h){ var p=h.previousElementSibling;
+                                  return !(p && p.tagName==='H1'); });
+  if (hs.length < 4) return;
+
+  hs.forEach(function(h,i){ if(!h.id) h.id = 'ch-' + (i+1); });
+
+  function list(){
+    var ol = document.createElement('ol');
+    hs.forEach(function(h){
+      var li = document.createElement('li');
+      var a  = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent.trim();
+      li.appendChild(a); ol.appendChild(li);
+    });
+    return ol;
+  }
+
+  var names = (document.body.dataset.speakers||'').split(/\s+/).filter(Boolean);
+  if (names.length) {
+    document.querySelectorAll('main .wrap > p > strong:first-child').forEach(function(st){
+      if (names.indexOf(st.textContent.trim()) !== -1) st.classList.add('speaker');
+    });
+  }
+
+  var inline = document.querySelector('[data-toc]');
+  if (inline) inline.appendChild(list());
+
+  var rail = document.querySelector('.toc-rail');
+  rail.appendChild(list());
+  document.body.classList.add('has-rail');
+
+  // 現在地。「いま何章か」が分かることが第一なので、最後に上端を越えた章を採る
+  var links = [].slice.call(rail.querySelectorAll('a'));
+  var io = new IntersectionObserver(function(){
+    var top = null;
+    hs.forEach(function(h,i){
+      if (h.getBoundingClientRect().top < window.innerHeight * 0.4) top = i;
+    });
+    links.forEach(function(a,i){
+      if (i === top) a.setAttribute('aria-current','true');
+      else a.removeAttribute('aria-current');
+    });
+  }, {rootMargin: '-40% 0px -60% 0px', threshold: 0});
+  hs.forEach(function(h){ io.observe(h); });
+})();
 </script>
 </body>
 </html>

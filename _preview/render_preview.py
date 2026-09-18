@@ -41,6 +41,8 @@ def liquid(t,page,content=''):
     t=re.sub(r'\{\{ page\.description \| default: site\.description \}\}','',t)
     t=t.replace("{{ '/' | relative_url }}",'/index.html')
     t=re.sub(r'\{% if page\.url != "/" %\}← \{% endif %\}','← ',t)
+    # {{ page.KEY }} を front matter の値に差し替える
+    t=re.sub(r'\{\{\s*page\.([a-z_]+)\s*\}\}',lambda m:page.get(m.group(1),''),t)
     # {% if page.KEY %}...{% endif %} を front matter に従って解決する
     # （解決しないと未設定キーの中身が preview に漏れて実物と食い違う）
     def _cond(m):

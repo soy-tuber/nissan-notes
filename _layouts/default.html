@@ -3,141 +3,229 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{% assign page_title = page.title | default: site.title %}
+{% assign page_desc = page.description | default: site.description %}
 <title>{% if page.title and page.title != site.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
+<meta name="description" content="{{ page_desc }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="{% if page.home %}website{% else %}article{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_desc }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/images/ogp.png' | absolute_url }}">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_desc }}">
+<meta name="twitter:image" content="{{ '/images/ogp.png' | absolute_url }}">
+<link rel="icon" href="{{ '/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- トンマナ（ui-tone スキル）の唯一の正。ここより下で生の色・寸法を書かない -->
+<link rel="stylesheet" href="{{ '/assets/tokens.css' | relative_url }}">
 <style>
-:root{
-  --bg:#fbfbf9; --fg:#1c1c1a; --muted:#6b6b64; --rule:#e2e1db;
-  --accent:#1f5673; --quote-bg:#f2f2ee; --code-bg:#f0efea;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#15161a; --fg:#e6e5e0; --muted:#9b9a93; --rule:#2e3037;
-         --accent:#7fb3cc; --quote-bg:#1d1f25; --code-bg:#22242b; }
-}
+/* ===================================================================
+   日産分析ノート — 固有スタイル
+   値はすべて tokens.css の var() を使う。生の色・px は書かない。
+   （2つだけ「トークンが足りない」箇所があり、下に印をつけて隔離してある）
+   =================================================================== */
+
 *{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg); color:var(--fg);
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
-  font-size:17px; line-height:1.9; letter-spacing:.02em;
-  -webkit-text-size-adjust:100%;
-}
-.wrap{max-width:44rem;margin:0 auto;padding:0 1.25rem}
-.wide .wrap{max-width:64rem}
-header.site{border-bottom:1px solid var(--rule);margin-bottom:3rem}
-body.home header.site{margin-bottom:1.25rem}
-header.site .wrap{padding-top:1.25rem;padding-bottom:1.25rem}
-header.site a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:.06em}
-header.site a:hover{color:var(--accent)}
-main h1{font-size:1.8rem;line-height:1.5;margin:0 0 .6rem;letter-spacing:.01em}
-main h2{font-size:1.3rem;line-height:1.6;margin:3.5rem 0 1rem;padding-top:1rem;border-top:1px solid var(--rule)}
-main h3{font-size:1.08rem;margin:2.5rem 0 .8rem;color:var(--accent)}
-main h1+h2{border-top:none;margin-top:.4rem;padding-top:0;font-size:1.05rem;color:var(--muted);font-weight:500}
-p{margin:0 0 1.5rem}
-a{color:var(--accent)}
-hr{border:none;border-top:1px solid var(--rule);margin:3rem 0}
-blockquote{
-  margin:2rem 0;padding:1.25rem 1.5rem;background:var(--quote-bg);
-  border-left:3px solid var(--accent);border-radius:2px;
-}
+.wrap{max-width:var(--content-max);margin:0 auto;padding-inline:var(--s-5)}
+/* 読み物は原典の版面より狭くする。和文は1行40字前後で折るのが読みやすい */
+body:not(.home):not(.wide) .wrap{max-width:44rem}
+
+/* ===== ヘッダ / フッタ ===== */
+header.site{border-bottom:var(--bd-ink)}
+header.site .wrap{padding-block:var(--s-4);display:flex;align-items:baseline;gap:var(--s-4)}
+header.site a{color:var(--c-ink);text-decoration:none;font-weight:700;font-size:var(--t-small)}
+header.site a:hover{text-decoration:underline;text-decoration-color:var(--c-accent);
+  text-decoration-thickness:2px;text-underline-offset:3px}
+header.site .ticker{margin-left:auto;font-family:var(--f-num);font-variant-numeric:tabular-nums;
+  font-size:var(--t-label);letter-spacing:var(--ls-label);color:var(--c-mute)}
+main{position:relative;display:block;padding-block:var(--s-7)}
+body.home main{padding-block:var(--s-6)}
+footer.site{border-top:var(--bd);margin-top:var(--s-8);padding-block:var(--s-6) var(--s-7);
+  color:var(--c-mute);font-size:var(--t-small)}
+footer.site .label{display:block;margin-bottom:var(--s-2)}
+
+/* ===== 本文 =====
+   階層は「サイズ」ではなく「地」で作る、が原典の核心。
+   h2 は黒ベタの帯（.band-ink 相当）を見出し自身に敷いて解く。 */
+main h1{font-size:var(--t-h1);font-weight:900}
+main h2{font-size:var(--t-h2);font-weight:700;margin:var(--s-7) 0 var(--s-4);
+  background:var(--c-ground);color:var(--c-ground-ink);
+  padding:var(--s-1) var(--s-3);border-radius:var(--r-1);display:inline-block}
+main h3{font-size:var(--t-h3);font-weight:700;margin:var(--s-6) 0 var(--s-3)}
+/* h1 直後の副題は帯にしない（タイトルと競合する） */
+main h1+h2{background:none;color:var(--c-mute);padding:0;font-weight:500;
+  font-size:var(--t-h3);margin:var(--s-2) 0 var(--s-6);display:block}
+main p{margin:0 0 var(--s-5)}
+body:not(.home) main p,body:not(.home) main li{font-size:var(--t-read)}
+hr{border:none;border-top:var(--rule-dot);margin:var(--s-7) 0}
+blockquote{margin:var(--s-6) 0;padding:var(--s-4) var(--s-5);background:var(--c-surface);
+  border-radius:var(--r-3)}
 blockquote p:last-child{margin-bottom:0}
-blockquote p{font-size:.95rem}
-img{max-width:100%;height:auto;display:block;margin:2rem auto;border-radius:3px}
-table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.7;margin:2rem 0}
-th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left}
-th{background:var(--quote-bg);font-weight:600}
-.scroll{overflow-x:auto;margin:2rem 0}
-code{background:var(--code-bg);padding:.1em .35em;border-radius:3px;font-size:.9em}
-ul,ol{margin:0 0 1.5rem;padding-left:1.5rem}
-li{margin-bottom:.4rem}
-footer.site{border-top:1px solid var(--rule);margin-top:5rem;padding:2rem 0 3rem;color:var(--muted);font-size:.85rem}
-body.home footer.site{margin-top:1.75rem;padding:1.1rem 0 1.5rem}
-.index-list{list-style:none;padding:0}
-.index-list li{margin-bottom:2rem}
-.index-list a{font-size:1.1rem;font-weight:600;text-decoration:none}
-.index-list a:hover{text-decoration:underline}
-.index-list .desc{display:block;color:var(--muted);font-size:.9rem;margin-top:.3rem;line-height:1.8}
+main img{max-width:100%;height:auto;display:block;margin:var(--s-6) auto;border-radius:var(--r-3)}
+/* 表は縦罫を引かない。横罫は点線（原典の署名的な罫） */
+.scroll{overflow-x:auto;margin:var(--s-6) 0}
+code{background:var(--c-surface);padding:0 var(--s-1);border-radius:var(--r-1);
+  font-family:var(--f-mono);font-size:var(--t-small)}
+ul,ol{margin:0 0 var(--s-5);padding-left:var(--s-5)}
+li{margin-bottom:var(--s-1)}
 
-/* --- 数値カード / スライダー / 注記ボックス --- */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin:1.5rem 0}
-.card{background:var(--quote-bg);border:1px solid var(--rule);border-radius:6px;padding:.85rem 1rem}
-.card .lbl{display:block;font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:.25rem}
-.card .val{display:block;font-size:1.35rem;font-weight:700;line-height:1.3;font-feature-settings:"tnum"}
-.card .sub{display:block;font-size:.75rem;color:var(--muted);line-height:1.5;margin-top:.2rem}
-.card.pos .val{color:#1a7f5a} .card.neg .val{color:#b4453c}
-@media (prefers-color-scheme: dark){.card.pos .val{color:#5fbf98}.card.neg .val{color:#e08078}}
-.note{background:var(--quote-bg);border-left:3px solid var(--accent);border-radius:2px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:.9rem;line-height:1.85}
-.note.warn{border-left-color:#c99a2e} .note.ok{border-left-color:#1a7f5a}
-.note p{margin:0 0 .6rem} .note p:last-child{margin-bottom:0}
-.ctrl{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem 1.5rem;margin:1.5rem 0;padding:1.25rem;background:var(--quote-bg);border:1px solid var(--rule);border-radius:6px}
-.ctrl label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:.3rem}
-.ctrl output{float:right;font-weight:700;color:var(--fg);font-feature-settings:"tnum"}
-.ctrl input[type=range]{width:100%;accent-color:var(--accent)}
-.ctrl input[type=number]{width:100%;padding:.35rem .5rem;border:1px solid var(--rule);border-radius:4px;background:var(--bg);color:var(--fg);font-size:1rem}
-td.num,th.num{text-align:right;font-feature-settings:"tnum"}
-.hi{background:rgba(26,127,90,.14)} .lo{background:rgba(180,69,60,.14)}
+/* ===== 数値カード / スライダー / 注記 ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+  gap:var(--s-3);margin:var(--s-5) 0}
+.card .lbl{display:block;font-size:var(--t-label);letter-spacing:0.08em;
+  color:var(--c-mute);margin-bottom:var(--s-1)}
+/* 数値は極端に大きく、単位・注記は極端に小さく */
+.card .val{display:block;font-family:var(--f-num);font-variant-numeric:tabular-nums;
+  font-size:var(--t-display);font-weight:700;line-height:var(--lh-tight);color:var(--c-ink)}
+.card .sub{display:block;font-size:var(--t-label);color:var(--c-mute);
+  line-height:1.5;margin-top:var(--s-1)}
+.card.pos .val{color:var(--c-ok)} .card.neg .val{color:var(--c-error)}
+.note{background:var(--c-surface);border-radius:var(--r-3);padding:var(--s-4) var(--s-5);
+  margin:var(--s-5) 0;font-size:var(--t-small)}
+.note.warn{background:var(--c-paper);border:var(--bd-ink)}
+.note.ok{background:var(--c-paper);border:var(--bd)}
+.note p{margin:0 0 var(--s-2);font-size:var(--t-small)} .note p:last-child{margin-bottom:0}
+.ctrl{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  gap:var(--s-4) var(--s-5);margin:var(--s-5) 0;padding:var(--s-5);
+  background:var(--c-surface);border-radius:var(--r-3)}
+.ctrl label{display:block;font-size:var(--t-label);letter-spacing:0.08em;
+  color:var(--c-mute);margin-bottom:var(--s-1)}
+.ctrl output{float:right;font-family:var(--f-num);font-variant-numeric:tabular-nums;
+  font-weight:700;color:var(--c-ink)}
+.ctrl input[type=range]{width:100%;accent-color:var(--c-ink)}
+.ctrl input[type=number]{width:100%;padding:var(--s-1) var(--s-2);border:var(--bd);
+  border-radius:var(--r-1);background:var(--c-paper);color:var(--c-body);font-size:var(--t-body)}
+th.num,td.num{text-align:right}
+.hi{background:var(--c-lime)} .lo{background:var(--c-surface)}
 
-/* ===== キャスト（カスタムカー・ギャング）装飾 ===== */
-.cast-fig{filter:drop-shadow(0 2px 4px rgba(0,0,0,.10))}
-@media (prefers-color-scheme: dark){
-  .cast-fig{filter:drop-shadow(0 0 1px rgba(255,255,255,.45)) drop-shadow(0 2px 6px rgba(0,0,0,.5))}
-}
-
-/* 余白（ガター）に散らす装飾。本文の外側だけに置き、狭い画面では消す */
+/* ===== キャスト装飾 ===== */
 .deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;display:none}
-.deco img{position:absolute;width:var(--w,11rem);height:auto;opacity:.92}
-.deco .d1{top:2%;  right:calc(50% + 23rem); --w:12rem; transform:rotate(-3deg)}
-.deco .d2{top:22%; left: calc(50% + 23rem); --w:10.5rem; transform:rotate(3deg)}
-.deco .d3{top:48%; right:calc(50% + 23rem); --w:11rem; transform:rotate(2deg)}
-.deco .d4{top:72%; left: calc(50% + 23rem); --w:12rem; transform:rotate(-2deg)}
-.deco .d5{top:90%; right:calc(50% + 23rem); --w:10rem; transform:rotate(-4deg)}
+.deco img{position:absolute;width:var(--gutter-fig);height:auto}
+.deco .d1{top:2%;  right:calc(50% + 23rem)}
+.deco .d2{top:22%; left: calc(50% + 23rem)}
+.deco .d3{top:48%; right:calc(50% + 23rem)}
+.deco .d4{top:72%; left: calc(50% + 23rem)}
+.deco .d5{top:90%; right:calc(50% + 23rem)}
 @media (min-width:1180px){ .deco{display:block} }
 .wide .deco .d1,.wide .deco .d3,.wide .deco .d5{right:calc(50% + 33rem)}
 .wide .deco .d2,.wide .deco .d4{left:calc(50% + 33rem)}
 @media (max-width:1560px){ .wide .deco{display:none} }
-main{position:relative}
 main .wrap{position:relative;z-index:1}
+/* 狭い画面はガターが無いので記事末尾に一列で出す */
+.cast-strip{display:none}
+@media (max-width:1179px){
+  .cast-strip{display:flex;align-items:flex-end;justify-content:center;gap:var(--s-2);
+    margin-top:var(--s-7);padding-top:var(--s-5);border-top:var(--rule-dot)}
+  .cast-strip img{height:5rem;width:auto}
+}
+@media (min-width:1180px) and (max-width:1560px){
+  .wide .cast-strip{display:flex;align-items:flex-end;justify-content:center;gap:var(--s-4);
+    margin-top:var(--s-7);padding-top:var(--s-5);border-top:var(--rule-dot)}
+  .wide .cast-strip img{height:6.5rem;width:auto}
+}
 
-/* ===== トップページ ===== */
-body.home .wrap{max-width:96rem}
-.hero{display:grid;grid-template-columns:minmax(20rem,1fr) auto;gap:1.2rem 2.5rem;align-items:end;margin:0 0 .3rem}
-.hero h1{font-size:clamp(1.6rem,2.4vw,2.2rem);margin:0 0 .7rem}
-.hero .lead{color:var(--muted);font-size:.95rem;line-height:1.85;margin:0;max-width:40rem}
-.cast-band{--h:clamp(110px,21vh,240px);display:flex;align-items:flex-end;gap:clamp(.2rem,.8vw,1rem);height:var(--h);position:relative}
-.cast-band::after{content:"";position:absolute;left:-1rem;right:-1rem;bottom:-2px;border-bottom:1px dashed var(--rule)}
-.cast-band img{height:calc(var(--h) * var(--fh) / 751);margin-bottom:calc(var(--h) * var(--fg) / 751);width:auto}
+/* ===================================================================
+   トップページ
+   原典 p-02 の二つの装置をそのまま使う：
+     左頁「WE ARE AMUSE + At a Glance」→ .hero + .glance
+     右頁「PICK UP CONTENTS」        → .sec-head + .tiles
+   =================================================================== */
+.hero{display:grid;grid-template-columns:minmax(18rem,1fr) auto;gap:var(--s-5) var(--s-7);
+  align-items:end}
+.hero h1{font-size:var(--t-display);font-weight:900;margin:var(--s-2) 0 var(--s-4)}
+/* 黄はこの1画面で「ここだけ」。サイト名の帯に使う */
+.hero h1 .band{font-size:inherit}
+.hero .lead{max-width:38rem;margin:0;color:var(--c-body)}
+.cast-band{--h:clamp(110px,20vh,220px);display:flex;align-items:flex-end;
+  gap:var(--s-2);height:var(--h)}
+.cast-band img{height:calc(var(--h) * var(--fh) / 751);
+  margin-bottom:calc(var(--h) * var(--fg) / 751);width:auto}
 @media (max-width:1100px){
   .hero{grid-template-columns:1fr}
   .cast-band{--h:clamp(96px,22vw,160px);justify-content:center}
 }
 
-/* ===== 記事タイル ===== */
-.sec-head{display:flex;align-items:baseline;gap:.8rem;margin:1.3rem 0 .75rem;padding-top:.6rem;border-top:1px solid var(--rule)}
-.sec-head h2{font-size:1.05rem;margin:0;padding:0;border:none;letter-spacing:.08em}
-.sec-head .n{font-size:.78rem;color:var(--muted);letter-spacing:.08em}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr));gap:.9rem;margin:0 0 .4rem;padding:0;list-style:none}
-.tile{position:relative;display:block;overflow:hidden;text-decoration:none;color:inherit;
-  background:var(--quote-bg);border:1px solid var(--rule);border-radius:8px;
-  padding:.75rem 1rem .85rem;min-height:8rem;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
-.tile:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.09)}
-.tile .kicker{display:block;font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.3rem;padding-right:4.3rem}
-.tile .t{display:block;font-size:1rem;font-weight:700;line-height:1.55;margin-bottom:.35rem;color:var(--accent);padding-right:4.3rem}
-.tile .d{display:block;font-size:.78rem;line-height:1.75;color:var(--muted);
-  padding-right:4.3rem;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.tile .fig{position:absolute;right:.4rem;bottom:0;width:4.5rem;height:5.6rem;
-  object-fit:cover;object-position:50% 0;opacity:.95;pointer-events:none}
-@media (prefers-color-scheme: dark){ .tile:hover{box-shadow:0 6px 18px rgba(0,0,0,.4)} }
+/* ----- At a Glance（原典の署名的な帯）-----
+   黒ベタ面に、巨大数値＋極小単位。最新期だけ濃く、という原則は
+   ここでは「黒地の白文字＝最新期」で満たしている。 */
+.glance{background:var(--c-ground);color:var(--c-ground-ink);border-radius:var(--r-3);
+  padding:var(--s-5) var(--s-6);margin-top:var(--s-6)}
+.glance-head{display:flex;align-items:baseline;gap:var(--s-3);
+  padding-bottom:var(--s-3);border-bottom:var(--rule-dot-ground)}
+.glance-head .label{color:var(--c-ground-mute)}
+.glance-head .src{margin-left:auto;font-size:var(--t-label);color:var(--c-ground-mute)}
+.glance-head .src a{color:var(--c-ground-ink)}
+.glance-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+  gap:var(--s-5);margin-top:var(--s-4)}
+.glance-items .k{display:block;font-size:var(--t-label);letter-spacing:0.08em;
+  color:var(--c-ground-mute);margin-bottom:var(--s-1)}
+.glance-items .v{display:block;font-family:var(--f-num);font-variant-numeric:tabular-nums;
+  font-size:var(--t-hero);font-weight:700;line-height:var(--lh-tight);letter-spacing:-0.02em}
+.glance-items .u{font-family:var(--f-sans);font-size:var(--t-h3);font-weight:700;margin-left:2px}
+/* ▲▼は数値ではなく符号。数字と同じ級数で組むと符号が主役になる */
+.glance-items .v .m{font-size:var(--t-h1);vertical-align:0.12em;margin-right:0.04em}
+.glance-items .d{display:block;font-size:var(--t-label);color:var(--c-ground-mute);
+  margin-top:var(--s-1)}
+@media (max-width:640px){ .glance-items .v{font-size:var(--t-display)} }
 
+/* ----- セクション見出し（欧文小ラベル→和文見出し、が基本形）----- */
+.sec-head{margin:var(--s-8) 0 var(--s-4);padding-bottom:var(--s-2);
+  border-bottom:var(--bd-ink);display:flex;align-items:baseline;gap:var(--s-3)}
+.sec-head .label{display:block;width:100%;margin-bottom:var(--s-1)}
+.sec-head h2{background:none;color:var(--c-ink);padding:0;margin:0;
+  font-size:var(--t-h1);font-weight:900;display:block}
+.sec-head .n{margin-left:auto;font-family:var(--f-num);font-variant-numeric:tabular-nums;
+  font-size:var(--t-label);color:var(--c-mute)}
+.sec-head .t{flex:1}
+
+/* ----- PICK UP CONTENTS 風のタイル -----
+   面は増やさない（白のまま）。区切りは影ではなく罫。
+   カテゴリは4系列そろって初めて使う色なので、細いチップで示す。 */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));
+  gap:var(--s-4);list-style:none;padding:0;margin:0}
+.tile{--cat:var(--c-ink);
+  position:relative;display:block;text-decoration:none;color:var(--c-body);
+  background:var(--c-paper);border:var(--bd);border-radius:var(--r-3);
+  padding:var(--s-4) var(--s-5) var(--s-5);min-height:9rem;overflow:hidden}
+.tile[data-cat=analysis]{--cat:var(--c-blue)}
+.tile[data-cat=data]    {--cat:var(--c-sky)}
+.tile[data-cat=article] {--cat:var(--c-red)}
+.tile[data-cat=pdf]     {--cat:var(--c-mute)}
+.tile:hover{border-color:var(--c-ink)}
+.tile .kicker{display:inline-block;background:var(--cat);color:var(--c-paper);
+  font-size:var(--t-label);font-weight:700;letter-spacing:0.08em;
+  padding:3px var(--s-2);border-radius:var(--r-1);margin-bottom:var(--s-3)}
+.tile .t{display:block;font-size:var(--t-h3);font-weight:700;color:var(--c-ink);
+  line-height:var(--lh-head);margin-bottom:var(--s-2);padding-right:4.5rem}
+.tile:hover .t{text-decoration:underline;text-decoration-color:var(--c-accent);
+  text-decoration-thickness:2px;text-underline-offset:3px}
+.tile .d{display:block;font-size:var(--t-small);color:var(--c-mute);padding-right:4.5rem;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tile .fig{position:absolute;right:var(--s-2);bottom:0;height:6rem;width:auto;max-width:4.5rem;
+  object-fit:contain;object-position:100% 100%;pointer-events:none}
 </style>
 </head>
 <body class="{% if page.wide %}wide {% endif %}{% if page.home %}home{% endif %}">
-<header class="site"><div class="wrap"><a href="{{ '/' | relative_url }}">{% if page.url != "/" %}← {% endif %}{{ site.title }}</a></div></header>
+<header class="site"><div class="wrap">
+<a href="{{ '/' | relative_url }}">{% if page.url != "/" %}← {% endif %}{{ site.title }}</a>
+<span class="ticker">7201.T</span>
+</div></header>
 <main>
 {% assign cast = page.cast | default: "" | split: " " %}{% if cast.size > 0 %}<div class="deco" aria-hidden="true">
 {% for c in cast %}<img class="cast-fig d{{ forloop.index }}" src="{{ '/images/cast/' | append: c | append: '.webp' | relative_url }}" alt="" loading="lazy" decoding="async">
 {% endfor %}</div>{% endif %}
-<div class="wrap">{{ content }}</div></main>
+<div class="wrap">{{ content }}
+{% if cast.size > 0 %}<div class="cast-strip" aria-hidden="true">
+{% for c in cast %}<img class="cast-fig" src="{{ '/images/cast/' | append: c | append: '.webp' | relative_url }}" alt="" loading="lazy" decoding="async">
+{% endfor %}</div>{% endif %}</div></main>
 <footer class="site"><div class="wrap">
+{% if page.updated %}<span class="label">Last updated {{ page.updated }}</span>{% endif %}
 <p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
 </div></footer>
 <script>

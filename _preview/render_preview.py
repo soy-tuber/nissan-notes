@@ -54,7 +54,6 @@ def liquid(t,page,content=''):
 import markdown as _md
 PAGES=[('index.md','index.html'),('psr.html','psr.html'),('cvp.md','cvp.html'),
        ('monthly.html','monthly.html'),('launches.html','launches.html'),
-       ('wayve_roadmap.html','wayve_roadmap.html'),
        ('nissan_dialogue.md','nissan_dialogue.html'),
        ('stephen_ma_china.md','stephen_ma_china.html'),
        ('dual_core_mobility.md','dual_core_mobility.html')]
@@ -70,6 +69,12 @@ for src,dst in PAGES:
     html=liquid(lay,fm,body)
     open(os.path.join(OUT,dst),'w',encoding='utf-8').write(html)
     print('->',dst)
+# front matter を持たないファイルは Jekyll がそのまま配信する。
+# レイアウトを被せるとプレビューだけ実物と食い違うので素通しでコピーする。
+for raw in ('wayve_roadmap.html',):
+    shutil.copyfile(os.path.join(ROOT,raw),os.path.join(OUT,raw))
+    print('-> (raw)',raw)
+
 for d in ('images','assets'):
     shutil.rmtree(os.path.join(OUT,d),ignore_errors=True)
     shutil.copytree(os.path.join(ROOT,d),os.path.join(OUT,d))

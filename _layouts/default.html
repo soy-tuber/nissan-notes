@@ -132,7 +132,7 @@ main p>strong.speaker:first-child{display:inline-block;background:var(--c-ink);
 @media (min-width:1540px){
   body.wide.has-rail .toc-rail{display:block;left:calc(50% - 48rem)}
   body.wide.has-rail .deco .d1,body.wide.has-rail .deco .d3,body.wide.has-rail .deco .d5{
-    right:auto;left:calc(50% + 33rem)}
+    right:auto;left:calc(50% + 37rem)}
 }
 main img{max-width:100%;height:auto;display:block;margin:var(--s-6) auto;border-radius:var(--r-3)}
 /* 表は縦罫を引かない。横罫は点線（原典の署名的な罫） */
@@ -153,6 +153,16 @@ li{margin-bottom:var(--s-1)}
 .card .sub{display:block;font-size:var(--t-label);color:var(--c-mute);
   line-height:1.5;margin-top:var(--s-1)}
 .card.pos .val{color:var(--c-ok)} .card.neg .val{color:var(--c-error)}
+/* 主役カード。黄はこの1画面に1枚だけ、「いま一番見てほしい数値」に敷く。
+   文字色にはしない（白地に黄は 1.5:1）ので、地ではなく上端の罫として使う。 */
+.card.lead{border-top:4px solid var(--c-accent)}
+.card.lead .val{font-size:var(--t-hero);letter-spacing:-0.02em}
+@media (max-width:640px){ .card.lead .val{font-size:var(--t-display)} }
+
+/* 時系列の最新期。「今どこか」が一目で分かることが第一なので、
+   過去は据え置き、最新列だけ濃くする。 */
+th.latest{border-bottom-color:var(--c-accent);border-bottom-width:4px}
+td.latest{color:var(--c-ink);font-weight:700}
 .note{background:var(--c-surface);border-radius:var(--r-3);padding:var(--s-4) var(--s-5);
   margin:var(--s-5) 0;font-size:var(--t-small)}
 .note.warn{background:var(--c-paper);border:var(--bd-ink)}
@@ -180,8 +190,10 @@ th.num,td.num{text-align:right}
 .deco .d4{top:72%; left: calc(50% + 23rem)}
 .deco .d5{top:90%; right:calc(50% + 23rem)}
 @media (min-width:1180px){ .deco{display:block} }
-.wide .deco .d1,.wide .deco .d3,.wide .deco .d5{right:calc(50% + 33rem)}
-.wide .deco .d2,.wide .deco .d4{left:calc(50% + 33rem)}
+/* wide の版面は --content-max(1120px=70rem)。半分の35rem＋余白2rem＝37rem 外側に置く。
+   33rem だと本文に食い込む（旧 64rem 版面向けの値だった） */
+.wide .deco .d1,.wide .deco .d3,.wide .deco .d5{right:calc(50% + 37rem)}
+.wide .deco .d2,.wide .deco .d4{left:calc(50% + 37rem)}
 @media (max-width:1560px){ .wide .deco{display:none} }
 main .wrap{position:relative;z-index:1}
 /* 狭い画面はガターが無いので記事末尾に一列で出す */
@@ -317,6 +329,22 @@ document.querySelectorAll('main table').forEach(function(t){
     rows.forEach(function(r){ if (r.cells[c]) r.cells[c].classList.add('num'); });
     var hr = t.tHead && t.tHead.rows[0];
     if (hr && hr.cells[c]) hr.cells[c].classList.add('num');
+  }
+
+  // 進行中の時系列（末尾の列が未発表＝空）なら、最新の実績列を濃くする。
+  // 年が埋まりきった表は「最新」が無いので何もしない。
+  var EMPTY = /^[—\-–]?$/;
+  function colEmpty(c){
+    return rows.every(function(r){
+      return !r.cells[c] || EMPTY.test(r.cells[c].textContent.trim());
+    });
+  }
+  var last = -1;
+  for (var k = cols - 1; k >= 1; k--) { if (!colEmpty(k)) { last = k; break; } }
+  if (last > 0 && last < cols - 1) {
+    rows.forEach(function(r){ if (r.cells[last]) r.cells[last].classList.add('latest'); });
+    var h2r = t.tHead && t.tHead.rows[0];
+    if (h2r && h2r.cells[last]) h2r.cells[last].classList.add('latest');
   }
 });
 

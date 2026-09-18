@@ -215,7 +215,7 @@ Baseは、キャリーオーバー+900、追浜等で生産費用+700、一過�
 </div>
 
 <div class="cards">
-<div class="card"><span class="lbl">一台あたり限界利益</span><span class="val" id="v_m">—</span><span class="sub">単価 × 限界利益率</span></div>
+<div class="card lead"><span class="lbl">一台あたり限界利益</span><span class="val" id="v_m">—</span><span class="sub">単価 × 限界利益率</span></div>
 <div class="card"><span class="lbl">自動車事業 営業利益</span><span class="val" id="v_auto">—</span><span class="sub">及び消去ベース</span></div>
 <div class="card"><span class="lbl">連結 営業利益</span><span class="val" id="v_con">—</span><span class="sub">FY26見通し 2,000億</span></div>
 <div class="card"><span class="lbl">損益分岐台数（自動車）</span><span class="val" id="v_bep">—</span><span class="sub" id="s_bep">—</span></div>

@@ -6,20 +6,23 @@
 <title>Wayve × Nissan ソフトウェア融合 — ロードマップと課題</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0E1825; --ink2:#13202F; --panel:#172534; --panel2:#1D2E40;
-    --line:#28384A; --line2:#33485E;
-    --fg:#E8EFF6; --mut:#8DA0B3; --mut2:#647889;
-    --tier1:#5A6B7D;      /* Tier1 / 委託・ブラックボックス */
-    --nissan:#2DD4BF;     /* 日産 / プラットフォーム・OS */
-    --aosp:#46B4F0;       /* AOSP・データ・クラウド */
-    --open:#9D8CF5;       /* Open標準 / SDK / 3rdパーティ */
-    --wayve:#9BDB3C;      /* Wayve / End-to-End AI */
-    --risk:#F2A23C;       /* 課題・リスク */
+    /* 地は黒に寄せ、色は彩度を上げて「発光する情報」に振る。
+       意味の割り当て（誰が何を握るか＝色）は元のまま動かさない。 */
+    --ink:#05060E; --ink2:#0A0E1A; --panel:#0D1424; --panel2:#111A2E;
+    --line:#1B2A44; --line2:#2C4269;
+    --fg:#EAF4FF; --mut:#93A9C4; --mut2:#5F7797;
+    --tier1:#5B6B85;      /* Tier1 / 委託・ブラックボックス（唯一の無彩色） */
+    --nissan:#00F0FF;     /* 日産 / プラットフォーム・OS */
+    --aosp:#3B9DFF;       /* AOSP・データ・クラウド */
+    --open:#C05CFF;       /* Open標準 / SDK / 3rdパーティ */
+    --wayve:#C2FF3D;      /* Wayve / End-to-End AI */
+    --risk:#FFA62B;       /* 課題・リスク */
+    --hot:#FF2EC4;        /* グリッチ・副アクセント */
     --d:'JetBrains Mono',ui-monospace,monospace;
-    --g:'Space Grotesk',sans-serif;
+    --g:'Chakra Petch','Space Grotesk','Hiragino Sans','Yu Gothic',sans-serif;
     --b:'Inter','Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
   }
   *{box-sizing:border-box}
@@ -185,6 +188,180 @@
       margin:0 0 30px;padding-bottom:26px;border-bottom:1px dashed var(--line2)}
     .cast-strip img{height:74px;width:auto;opacity:.92;
       filter:drop-shadow(0 0 1px rgba(255,255,255,.5))}
+  }
+
+  /* ===================================================================
+     CYBERPUNK OVERRIDE
+     地＝黒、情報＝発光。意味の色分け（Tier1/日産/AOSP/Open/Wayve）は
+     元の割り当てのまま、彩度と発光だけ上げている。
+     本文だけは白に近い #EAF4FF を素のまま置き、発光装飾を載せない。
+     =================================================================== */
+
+  html{background:var(--ink)}
+  body{background:var(--ink)}
+
+  /* --- 地の層：グリッド＋二灯のグロー（cyan / magenta）--- */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(60% 45% at 82% -8%, rgba(0,240,255,.16) 0%, rgba(0,240,255,0) 60%),
+      radial-gradient(55% 40% at 8% 18%, rgba(255,46,196,.10) 0%, rgba(255,46,196,0) 60%),
+      radial-gradient(70% 50% at 50% 108%, rgba(194,255,61,.07) 0%, rgba(194,255,61,0) 60%),
+      repeating-linear-gradient(0deg, rgba(0,240,255,.045) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, rgba(0,240,255,.045) 0 1px, transparent 1px 44px);
+  }
+  /* --- 最前面の層：走査線。2%なので文字は潰れない --- */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:3;
+    background:repeating-linear-gradient(0deg,
+      rgba(255,255,255,.022) 0 1px, transparent 1px 3px);
+    mix-blend-mode:overlay;
+  }
+  .wrap{position:relative;z-index:1}
+  ::selection{background:var(--hot);color:#05060E}
+
+  /* --- サイトバー --- */
+  /* 6,000px 超の長尺なので、戻り導線は上に貼り付けておく */
+  .sitebar{position:sticky;top:0;z-index:5;border-bottom:1px solid transparent;
+    border-image:linear-gradient(90deg,var(--nissan),var(--hot) 55%,transparent) 1;
+    background:rgba(5,6,14,.78);backdrop-filter:blur(8px) saturate(140%)}
+  .sitebar a{font-family:var(--d);font-size:12.5px;letter-spacing:.06em;
+    text-shadow:0 0 12px rgba(0,240,255,.35)}
+  .sitebar .tk{color:var(--nissan);text-shadow:0 0 10px rgba(0,240,255,.5)}
+
+  /* --- HERO --- */
+  header{border-bottom:1px solid var(--line);overflow:hidden}
+  .eyebrow{color:var(--mut2)}
+  .eyebrow b{color:var(--nissan);text-shadow:0 0 12px rgba(0,240,255,.55)}
+  /* RGBずれ（色収差）。派手さはここに集約し、本文には波及させない */
+  h1{color:#fff;letter-spacing:-.01em;
+    text-shadow:
+      2px 0 0 rgba(255,46,196,.55),
+     -2px 0 0 rgba(0,240,255,.55),
+      0 0 34px rgba(0,240,255,.28);
+    animation:rgbjitter 5.5s steps(1,end) infinite}
+  @keyframes rgbjitter{
+    0%,88%,100%{text-shadow:2px 0 0 rgba(255,46,196,.55),-2px 0 0 rgba(0,240,255,.55),0 0 34px rgba(0,240,255,.28)}
+    90%{text-shadow:-5px 0 0 rgba(255,46,196,.7),4px 0 0 rgba(0,240,255,.7),0 0 34px rgba(0,240,255,.35)}
+    92%{text-shadow:4px 1px 0 rgba(255,46,196,.7),-4px -1px 0 rgba(0,240,255,.7),0 0 34px rgba(0,240,255,.35)}
+    94%{text-shadow:2px 0 0 rgba(255,46,196,.55),-2px 0 0 rgba(0,240,255,.55),0 0 34px rgba(0,240,255,.28)}
+  }
+  h1 .x{color:var(--hot);text-shadow:0 0 18px rgba(255,46,196,.8)}
+  .lede em{border-bottom:2px solid var(--nissan);
+    box-shadow:inset 0 -8px 14px -10px var(--nissan)}
+  .heroblocks{box-shadow:0 0 26px rgba(0,240,255,.18);border-radius:3px}
+  .heroblocks span{height:12px;box-shadow:0 0 10px rgba(255,255,255,.14) inset}
+  .glyphnote{color:var(--mut2)}
+  /* 走査ビーム。1本だけ、ヒーローの中をゆっくり降りる */
+  header::after{content:"";position:absolute;left:0;right:0;height:1px;top:0;
+    background:linear-gradient(90deg,transparent,var(--nissan),transparent);
+    opacity:.5;animation:beam 7s linear infinite}
+  @keyframes beam{0%{top:0;opacity:0}8%{opacity:.5}92%{opacity:.5}100%{top:100%;opacity:0}}
+
+  /* --- セクション見出し --- */
+  section{border-bottom:1px solid var(--line)}
+  .stag{color:var(--mut2);display:flex;align-items:center;gap:8px}
+  .stag i{color:var(--nissan);font-style:normal;font-weight:700;
+    border:1px solid var(--nissan);border-radius:4px;padding:2px 7px;
+    box-shadow:0 0 14px rgba(0,240,255,.3),inset 0 0 12px rgba(0,240,255,.14);
+    text-shadow:0 0 10px rgba(0,240,255,.6)}
+  h2{color:#fff;position:relative;padding-left:16px;
+    text-shadow:0 0 26px rgba(0,240,255,.22)}
+  h2::before{content:"";position:absolute;left:0;top:.18em;bottom:.18em;width:4px;
+    border-radius:2px;background:linear-gradient(180deg,var(--nissan),var(--hot));
+    box-shadow:0 0 12px rgba(0,240,255,.6)}
+
+  /* --- カード共通：四隅のブラケット（HUD）--- */
+  .mcard,.risk,.col,.ib,.tier3 div{position:relative}
+  .mcard::before,.risk::before,.col::before,.ib::before,.tier3 div::before,
+  .mcard::after, .risk::after, .col::after, .ib::after, .tier3 div::after{
+    content:"";position:absolute;width:12px;height:12px;pointer-events:none;
+    border-color:var(--nissan);opacity:.65}
+  .mcard::before,.risk::before,.col::before,.ib::before,.tier3 div::before{
+    top:-1px;right:-1px;border-top:2px solid;border-right:2px solid;border-radius:0 6px 0 0}
+  .mcard::after,.risk::after,.col::after,.ib::after,.tier3 div::after{
+    bottom:-1px;left:-1px;border-bottom:2px solid;border-left:2px solid;border-radius:0 0 0 6px}
+
+  .mcard{background:linear-gradient(160deg,rgba(0,240,255,.05),rgba(13,20,36,.9));
+    border-color:var(--line2);box-shadow:inset 0 0 30px rgba(0,240,255,.04)}
+  .mcard.cn{border-left:3px solid var(--aosp);box-shadow:inset 0 0 30px rgba(59,157,255,.07)}
+  .mcard.lg{border-left:3px solid var(--open);box-shadow:inset 0 0 30px rgba(192,92,255,.07)}
+  .mcard.cn::before,.mcard.cn::after{border-color:var(--aosp)}
+  .mcard.lg::before,.mcard.lg::after{border-color:var(--open)}
+  .mcard .tag{color:var(--nissan);opacity:.85}
+  .mcard h3{color:#fff}
+
+  /* --- ロードマップ --- */
+  .phase{border-top:1px dashed var(--line2)}
+  .pmark .pn{font-size:44px;color:var(--nissan);
+    text-shadow:0 0 22px rgba(0,240,255,.65),0 0 60px rgba(0,240,255,.3)}
+  .pmark .pd{color:var(--hot);opacity:.85}
+  .pmark .ph{color:#fff}
+  .pbody h4{color:#fff}
+  .pbody li::before{box-shadow:0 0 10px var(--c,var(--nissan));border-radius:1px}
+  .ptags em{border-color:var(--line2);color:var(--mut);background:rgba(0,240,255,.04)}
+  .ptags em:hover{border-color:var(--nissan);color:var(--nissan)}
+
+  /* --- スタック --- */
+  .col{background:linear-gradient(180deg,rgba(11,16,30,.95),rgba(5,6,14,.95));
+    border-color:var(--line2)}
+  .col .ct{color:#fff}
+  .lay{border-radius:5px;font-weight:600;
+    box-shadow:0 0 0 1px rgba(255,255,255,.14),0 4px 20px rgba(0,0,0,.65)}
+  .lay.dim{box-shadow:none}
+  .legend{color:var(--mut)}
+  .sw{box-shadow:0 0 10px currentColor}
+
+  /* --- 継ぎ手 --- */
+  .ib{background:linear-gradient(140deg,rgba(0,240,255,.04),rgba(10,14,26,.92));
+    border-color:var(--line2)}
+  .ib h4{color:#fff}
+  .ib .ic{box-shadow:0 0 18px -2px rgba(255,255,255,.35);font-weight:700}
+  .connector span{color:var(--open);border-color:var(--open);
+    box-shadow:0 0 16px -3px var(--open),inset 0 0 14px -8px var(--open);
+    animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+
+  /* --- 課題 --- */
+  .tier3 div{background:linear-gradient(160deg,rgba(13,20,36,.9),rgba(5,6,14,.9));
+    border-color:var(--line2)}
+  .t-clear::before,.t-clear::after{border-color:var(--nissan)}
+  .t-live::before, .t-live::after {border-color:var(--risk)}
+  .t-debt::before, .t-debt::after {border-color:#FF4D6D}
+  .t-debt .lb{color:#FF4D6D}
+  .risk{background:linear-gradient(160deg,rgba(255,166,43,.05),rgba(10,14,26,.94));
+    border-color:var(--line2);border-left:3px solid var(--risk);
+    box-shadow:inset 0 0 40px rgba(255,166,43,.05)}
+  .risk::before,.risk::after{border-color:var(--risk)}
+  .risk .rn{text-shadow:0 0 12px rgba(255,166,43,.7)}
+  .risk h4{color:#fff}
+  .watch{color:var(--nissan);text-shadow:0 0 12px rgba(0,240,255,.4)}
+  .watch::before{color:var(--hot)}
+
+  /* --- フッタ --- */
+  footer h2{padding-left:16px}
+  .src{color:var(--mut2)}
+
+  /* --- キャスト：黒地なのでシアンのリムを足して「ネオンに照らされた」感 --- */
+  .deco img{filter:
+    drop-shadow(0 0 2px rgba(0,240,255,.45))
+    drop-shadow(0 0 1px rgba(255,255,255,.55))
+    drop-shadow(0 6px 16px rgba(0,0,0,.7))}
+  .cast-strip img{filter:
+    drop-shadow(0 0 2px rgba(0,240,255,.45))
+    drop-shadow(0 0 1px rgba(255,255,255,.55))}
+  .cast-strip{border-bottom-color:var(--line2)}
+
+  /* --- スクロールバー --- */
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:#05060E}
+  ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px;
+    border:2px solid #05060E}
+  ::-webkit-scrollbar-thumb:hover{background:var(--nissan)}
+
+  @media(prefers-reduced-motion:reduce){
+    h1,.connector span{animation:none}
+    header::after{display:none}
   }
 </style>
 </head>

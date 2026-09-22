@@ -150,9 +150,41 @@
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
   a{color:var(--nissan)}
+
+  /* ---------- CAST（カスタムカー・ギャング）----------
+     版面は 920px。その外側のガターにだけ置くので本文には食い込まない。
+     暗い地なので線画が沈む。白の極細ドロップシャドウで輪郭を起こす。 */
+  body{position:relative}
+  header,section,footer{position:relative;z-index:1}
+  .deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;display:none}
+  .deco img{position:absolute;width:170px;height:auto;opacity:.92;
+    filter:drop-shadow(0 0 1px rgba(255,255,255,.5)) drop-shadow(0 4px 12px rgba(0,0,0,.55))}
+  .deco .d1{top:3%;  right:calc(50% + 500px)}
+  .deco .d2{top:25%; left: calc(50% + 500px)}
+  .deco .d3{top:47%; right:calc(50% + 500px)}
+  .deco .d4{top:69%; left: calc(50% + 500px)}
+  .deco .d5{top:88%; right:calc(50% + 500px)}
+  /* 920 + (40 + 170)×2 = 1340。居場所が取れない幅では出さない */
+  @media(min-width:1360px){ .deco{display:block} }
+  /* 狭い画面はガターが無いので、記事末尾に一列で出す */
+  .cast-strip{display:none}
+  @media(max-width:1359px){
+    .cast-strip{display:flex;align-items:flex-end;justify-content:center;gap:12px;
+      margin:0 0 30px;padding-bottom:26px;border-bottom:1px dashed var(--line2)}
+    .cast-strip img{height:74px;width:auto;opacity:.92;
+      filter:drop-shadow(0 0 1px rgba(255,255,255,.5))}
+  }
 </style>
 </head>
 <body>
+
+<div class="deco" aria-hidden="true">
+  <img class="d1" src="images/cast/muscle-b.webp" alt="" loading="lazy" decoding="async">
+  <img class="d2" src="images/cast/racer-b.webp" alt="" loading="lazy" decoding="async">
+  <img class="d3" src="images/cast/painter-a.webp" alt="" loading="lazy" decoding="async">
+  <img class="d4" src="images/cast/mechanic-b.webp" alt="" loading="lazy" decoding="async">
+  <img class="d5" src="images/cast/radio-b.webp" alt="" loading="lazy" decoding="async">
+</div>
 
 <header>
   <div class="wrap">
@@ -406,6 +438,13 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
+    <div class="cast-strip" aria-hidden="true">
+      <img src="images/cast/muscle-b.webp" alt="" loading="lazy" decoding="async">
+      <img src="images/cast/racer-b.webp" alt="" loading="lazy" decoding="async">
+      <img src="images/cast/painter-a.webp" alt="" loading="lazy" decoding="async">
+      <img src="images/cast/mechanic-b.webp" alt="" loading="lazy" decoding="async">
+      <img src="images/cast/radio-b.webp" alt="" loading="lazy" decoding="async">
+    </div>
     <h2>出典と注記</h2>
     <p class="src">
       Wayve — AI-500 Roadshow（500都市 / 219 zero-shot, 2025）, GAIA-3 launch（2025-12）, Nissan採用発表（2025-04）, Uber London（2025）<br>

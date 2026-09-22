@@ -7,14 +7,16 @@ cast: radio-b muscle-a racer-b
 
 <style>
 .badge{display:inline-block;font-size:.72rem;line-height:1.5;padding:.05rem .4rem;border:1px solid currentColor;border-radius:3px;white-space:nowrap;vertical-align:.08em}
-.b-fix{color:#1a7f5a} .b-plan{color:#a5761c} .b-obs{color:#6b6b64}
-@media (prefers-color-scheme: dark){.b-fix{color:#5fbf98}.b-plan{color:#d7a03c}.b-obs{color:#9b9a93}}
+/* 地が黒になったので、白地前提の濃色をネオン側へ持ち替える。
+   prefers-color-scheme の分岐は地が常に黒になったので不要 */
+.b-fix{color:var(--c-ok)} .b-plan{color:var(--c-warn)} .b-obs{color:var(--c-mute)}
 td .badge{margin-right:.35rem}
 .ledger td:first-child{font-weight:600}
 .ledger td,.ledger th{vertical-align:top}
-.arw{color:var(--accent);font-weight:600}
-.chk{color:#b4453c;font-weight:600}
-@media (prefers-color-scheme: dark){.chk{color:#e08078}}
+/* --accent は tokens.css に無い変数名だった（効いていなかった）ので
+   --c-accent に直す */
+.arw{color:var(--c-accent);font-weight:600}
+.chk{color:var(--c-error);font-weight:600}
 </style>
 
 <h1>日産 グローバル投入カレンダー</h1>

@@ -151,6 +151,20 @@
 
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
+  /* --- 文字寸法。サイト側（--type-scale .92）に合わせて約8%詰める。
+         このページは px 指定なので rem のような一括の縮小が効かない --- */
+  body{font-size:14.6px}
+  h1{font-size:clamp(27px,6.4vw,47px)}
+  h2{font-size:clamp(20px,4.1vw,27px)}
+  .lede{font-size:clamp(13.5px,2.2vw,16.5px)}
+  .sub{font-size:14.6px}
+  .mcard p,.pbody li,.risk p{font-size:13px}
+  .ib p{font-size:12.5px}
+  .mcard h3{font-size:16.5px}
+  .ib h4,.risk h4{font-size:15.5px}
+  .pbody h4{font-size:14.7px}
+  .disc{font-size:11.5px}
+
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
   a{color:var(--nissan)}
 

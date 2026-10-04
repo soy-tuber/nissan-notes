@@ -1,0 +1,12 @@
+{
+  "name": "nissan-notes-map",
+  "private": true,
+  "type": "module",
+  "description": "map.html のワールドマップSVGを生成する。Natural Earth（パブリックドメイン）を world-atlas 経由で取得し、正距円筒図法・東経140度中心に投影して svg.txt を書き出す。",
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}

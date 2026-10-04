@@ -9,6 +9,7 @@
 | `nissan_dialogue.md` | 現場と数字で日産を読む — 受注・供給の天井・Re:Nissan・限界利益の逆算・関税・中国 |
 | `stephen_ma_china.md` | スティーブン・マーと中国日産 |
 | `dual_core_mobility.md` | デュアルコア・モビリティ【改訂版】— THS と e-POWER の技術対談 |
+| `map.html` | グローバル物流マップ — 生産地と仕向地を大圏コースで結ぶ |
 | `wayve_roadmap.html` | Wayve × Nissan ロードマップ |
 | `dual_core_shinsho.pdf` | デュアルコア・モビリティ（新書体裁版） |
 
@@ -21,6 +22,7 @@ Jekyll（GitHub Pages 標準）で構築。記事は Markdown を直接編集し
 - `_layouts/default.html` — 和文長文向けの自作レイアウト（外部テーマ非依存、ライト/ダーク対応）
 - `images/` — 記事中の図版
 - `.mcp.json` — デザイン参照用MCP（inspo）の設定
+- `tools/map/` — 物流マップのワールドマップSVGを生成するスクリプト（Natural Earth → SVG）
 
 ## デザインの約束事
 

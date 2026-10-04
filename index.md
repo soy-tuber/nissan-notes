@@ -144,6 +144,12 @@ title: 日産分析ノート
 <span class="d">前年同月比の月次推移。中国は決算より約3か月先行するため、月次速報のほうが早く変化を掴めます。</span>
 </a>
 
+<a class="tile lead" href="map.html">
+<span class="chip">Map</span><span class="arw">→</span>
+<span class="t">グローバル物流マップ</span>
+<span class="d">どの工場から、どの海を越えて出ていくのか。生産地と仕向地を大圏コースで結んだ世界地図。日本発が右ハンドル圏の外へ出ていること、太平洋を渡る線に15%の値札が付いていること、e-POWERの心臓を運ぶ緑の線が一本しかないこと ── 三つの制約が線の上に乗っています。</span>
+</a>
+
 <a class="tile" href="launches.html">
 <span class="chip">Launch</span><span class="arw">→</span>
 <span class="t">グローバル投入カレンダー</span>

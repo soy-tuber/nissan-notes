@@ -20,11 +20,13 @@ wide: true
 .fbtns button.b-in[aria-pressed=true]{color:#ffc24b;border-color:#ffc24b;box-shadow:0 0 10px -2px #ffc24b}
 .fbtns button.b-unit[aria-pressed=true]{color:#2bf5a0;border-color:#2bf5a0;box-shadow:0 0 10px -2px #2bf5a0}
 .fbtns button.b-risk[aria-pressed=true]{color:#ff2e6b;border-color:#ff2e6b;box-shadow:0 0 10px -2px #ff2e6b}
-.mapwrap svg{display:block;width:100%;height:auto;margin:0;background:#05070c}
-.land{fill:#0b0f17;stroke:none}
-.bord{fill:none;stroke:#1a2534;stroke-width:.55;vector-effect:non-scaling-stroke}
-.grat{fill:none;stroke:#101723;stroke-width:.5;vector-effect:non-scaling-stroke}
-.eq{stroke:#1a2534;stroke-width:.6;stroke-dasharray:5 7;vector-effect:non-scaling-stroke}
+.mapwrap svg{display:block;width:100%;height:auto;margin:0;background:#060b14}
+/* 陸は「面」で見せる。海（#060b14）との差を付け、海岸線を発光させる */
+.land{fill:#132236;stroke:#3d7ea0;stroke-width:.9;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px rgba(45,226,255,.35))}
+.bord{fill:none;stroke:#2c4762;stroke-width:.7;vector-effect:non-scaling-stroke}
+.grat{fill:none;stroke:#16202e;stroke-width:.6;vector-effect:non-scaling-stroke}
+.eq{stroke:#2c4762;stroke-width:.7;stroke-dasharray:5 7;vector-effect:non-scaling-stroke}
 .fl{transition:opacity .2s}
 .fl .glow{fill:none;stroke:currentColor;stroke-width:5;opacity:.13;stroke-linecap:round}
 .fl .line{fill:none;stroke:currentColor;stroke-width:1;opacity:.5;vector-effect:non-scaling-stroke}
@@ -43,13 +45,13 @@ wide: true
 .nd .ping{fill:none;stroke:currentColor;stroke-width:1;opacity:0;
   animation:ping 3.2s cubic-bezier(0,.2,.6,1) infinite}
 @keyframes ping{0%{r:4;opacity:.6}70%{r:16;opacity:0}100%{opacity:0}}
-.nd .lead{fill:none;stroke:currentColor;stroke-width:.8;opacity:.45;vector-effect:non-scaling-stroke}
-.nd text{font-family:ui-monospace,monospace;font-size:13px;fill:#92a3b8;paint-order:stroke;
-  stroke:#05070c;stroke-width:3px;stroke-linejoin:round}
+.nd .lead{fill:none;stroke:currentColor;stroke-width:1;opacity:.7;vector-effect:non-scaling-stroke}
+.nd text{font-family:ui-monospace,monospace;font-size:13px;fill:#d6e6f5;paint-order:stroke;
+  stroke:#050a12;stroke-width:4px;stroke-linejoin:round}
 .nd.plant{color:#2de2ff} .nd.unit{color:#2bf5a0} .nd.alli{color:#a97bff}
-.mkt circle{fill:none;stroke:#46536a;stroke-width:1;vector-effect:non-scaling-stroke}
-.mkt text{font-family:ui-monospace,monospace;font-size:11.5px;fill:#55637a;paint-order:stroke;
-  stroke:#05070c;stroke-width:3px}
+.mkt circle{fill:none;stroke:#7d8ea6;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.mkt text{font-family:ui-monospace,monospace;font-size:11.5px;fill:#9fb0c6;paint-order:stroke;
+  stroke:#050a12;stroke-width:4px}
 .flist{width:100%;font-size:.84rem}
 .flist td:first-child{white-space:nowrap}
 .dot{display:inline-block;width:.6rem;height:.6rem;margin-right:.45rem;vertical-align:-.02rem}

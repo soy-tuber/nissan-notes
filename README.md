@@ -16,6 +16,18 @@
 ## 構成
 
 Jekyll（GitHub Pages 標準）で構築。記事は Markdown を直接編集して push すれば反映されます。
+
+公開前にローカルで確認する場合：
+
+```
+gem install jekyll
+jekyll build -d /tmp/site      # ビルドが通るか（Liquid・kramdownのエラーを拾う）
+jekyll serve                   # http://127.0.0.1:4000/nissan-notes/
+```
+
+`baseurl: /nissan-notes` を設定しているため、`relative_url` / `absolute_url` を通したリンクは
+`/nissan-notes/...` になります。**`<div>` の中に Markdown を書くと処理されません**（kramdown の仕様）。
+見出しや強調を div の中で使いたいときは `markdown="1"` を付けるか、素の HTML で書いてください。
 各記事の冒頭には `title` のみの front matter があり、それ以外は本文そのものです。
 
 - `_config.yml` — サイト設定

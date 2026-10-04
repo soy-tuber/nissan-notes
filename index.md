@@ -4,8 +4,7 @@ title: 日産分析ノート
 
 <div class="hero">
 <p class="eyebrow">// nissan motor 7201 — analysis notes</p>
-
-# 日産分析ノート
+<h1>日産分析ノート</h1>
 
 <p class="lede">決算資料の数字を分解し、開示されない固定費や一台あたり限界利益を逆算しながら、現場で確かめた事実と突き合わせる。日産自動車（7201）と、日産車体（7222）・日産東京販売HD（8291）をめぐる分析ノートです。</p>
 <p class="meta">LAST BUILD 2026.10.04</p>

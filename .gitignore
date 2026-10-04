@@ -1,2 +1,3 @@
-# ローカルプレビュー（Ruby/Jekyll 無しで確認するための簡易レンダラの出力）
-_preview/out/
+node_modules/
+_site/
+.jekyll-cache/

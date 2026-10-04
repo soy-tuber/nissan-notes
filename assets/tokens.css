@@ -1,0 +1,327 @@
+/* ============================================================
+   tokens.css — 自作Webアプリ共通のデザイントークン
+   ここが唯一の正。CSSの他の場所に生の色・サイズを書かない。
+
+   出典：株式会社アミューズ 統合報告書 2024（00.pdf）
+         色はページを300dpi相当でラスタライズして実測した値。
+         バリエーションとして 2025年版（別紙）を [data-tone="soft"] に収録。
+
+   変数名は旧版から変更していない。既存アプリ（gijiroku / ss-1zzz 等）は
+   そのまま動く。増えたのは --c-ground 以下の面色・カテゴリ色・角丸の段。
+   ============================================================ */
+
+/* 和文：Noto Sans JP（OFL・自己ホスト可）。
+     見出しは 900、本文は 400。原典の「見出ゴMB101 Ultra ＋ ヒラギノUD角ゴ」に対応。
+   欧文：Jost（Futura系・OFL）。原典の Futura ExtraBold / Avenir Black に対応。
+     大文字＋字間広めでのみ使う。小文字の文章に使わない。
+   数字：Archivo（DIN系・OFL）。等幅数字を持つ。
+   VPSに置く場合はこの@importを消して @font-face に差し替える。 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Jost:wght@500;700;800&family=Archivo:wght@500;600;700&display=swap");
+
+:root {
+  /* ---- 色：地と文字 --------------------------------------
+     この報告書は「白・黒・淡グレー・水色」の4面しか使わない。
+     面を増やさないことが、黄を効かせる前提になっている。 */
+  --c-ink:     #000000;  /* 見出し・罫・黒ベタ。#111 に逃げない。原典は純黒 */
+  --c-body:    #1F1F1F;  /* 本文 */
+  --c-mute:    #6E7478;  /* ラベル・補助・過去の数値 */
+  --c-line:    #CBD0D3;  /* 罫線・区切り */
+  --c-surface: #E5EBEE;  /* 淡い面（カード背景・ゼブラ・図の地） */
+  --c-paper:   #FFFFFF;  /* 地 */
+
+  /* 反転面。原典は見開き片面をまるごと黒／水色で塗る使い方をする。
+     面の上にも「主・従・罫」の3段が要る。--c-mute / --c-line は白地専用で、
+     黒地・水色地では使えない（コントラストが破綻する）ので面ごとに持つ。 */
+  --c-ground:      #000000;  /* 黒ベタ面 */
+  --c-ground-ink:  #FFFFFF;
+  --c-ground-mute: #9BA1A5;  /* 黒地の補助文字（黒地に 7.4:1） */
+  --c-ground-line: #4A4A4A;  /* 黒地の罫 */
+  --c-cool:        #89B2C9;  /* 水色ベタ面。上に乗せる文字は黒 */
+  --c-cool-ink:    #000000;
+  --c-cool-mute:   #28414E;  /* 水色地の補助文字（水色地に 5.1:1） */
+
+  /* ---- 色：アクセント ------------------------------------
+     黄は1画面に1箇所。白地に黄文字は 1.5:1 で読めないので必ず「地」に使う。 */
+  --c-accent:     #FDD108;
+  --c-accent-ink: #000000;  /* 黄の上に乗せる文字色 */
+
+  /* ---- 色：カテゴリ ---------------------------------------
+     「見つける／育む／届ける」のように、意味の違う系列を並べるときだけ使う。
+     装飾で持ち出さない。使うなら3〜4色まとめて、単独で1色だけ使わない。 */
+  --c-blue:  #376AB3;  /* 白文字可（5.4:1） */
+  --c-red:   #E73656;  /* 面と大きい文字だけ。本文サイズの文字色にしない */
+  --c-sky:   #51A5DC;
+  --c-green: #92C9A7;  /* 以下3色は淡い。黒文字を乗せる前提 */
+  --c-teal:  #A2D7D4;
+  --c-lime:  #D8E58D;
+
+  /* 状態色。黄より彩度を落として、黄を主役に保つ */
+  --c-ok:    #2E7D5B;
+  --c-warn:  #B26A00;
+  --c-error: #C4102F;  /* 文字用。面に使うときは --c-red */
+
+  /* ---- 書体 ---------------------------------------------- */
+  --f-sans: "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN",
+            "Yu Gothic", Meiryo, sans-serif;
+  --f-disp: "Jost", "Noto Sans JP", sans-serif;      /* 欧文ディスプレイ。大文字専用 */
+  --f-num:  "Archivo", "Noto Sans JP", Arial, sans-serif;  /* 数値 */
+  /* 等幅。コード・ログ・設定ファイル・SQL・JSONを見せる画面で使う。
+     単一ファイルアプリ103本で必要になったので追加した（値の変更ではなく追加）。 */
+  --f-mono: "SFMono-Regular", Menlo, Consolas, "Liberation Mono",
+            "Noto Sans Mono", monospace;
+
+  /* ---- 文字サイズ（1remを16pxとして固定） ----------------
+     原典は数値を極端に大きく、単位を極端に小さくする。その差が紙面を作る。 */
+  --t-hero:    3.500rem;  /* 56px 単独で置く数値（1978年・316名） */
+  --t-display: 2.000rem;  /* 32px 画面タイトル・KPI値 */
+  --t-h1:      1.500rem;  /* 24px */
+  --t-h2:      1.125rem;  /* 18px */
+  --t-h3:      0.9375rem; /* 15px */
+  --t-body:    0.9375rem; /* 15px 和文本文はこれ以上下げない */
+  --t-read:    1.0625rem; /* 17px 長文の和文本文。数千字を通して読ませる画面用。
+                            原典は紙なのでこの用途を持っていない。一覧・UI は --t-body のまま */
+  --t-small:   0.8125rem; /* 13px 補助 */
+  --t-label:   0.6875rem; /* 11px 欧文ラベル。必ず大文字＋字間広め */
+
+  /* ---- 行送り・字間 --------------------------------------
+     和文は1.85前後がいちばん読みやすい。1.5だと詰まる。 */
+  --lh-body:  1.85;
+  --lh-head:  1.40;
+  --lh-tight: 1.05;   /* 数値の塊。原典の巨大数値は行間をほぼ詰める */
+  --ls-head:  0.02em;
+  --ls-label: 0.18em; /* 欧文小ラベル */
+  --ls-disp:  0.06em; /* 欧文ディスプレイ（SUSTAINABILITY 等） */
+
+  /* ---- 余白（4px基準） ----------------------------------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+
+  /* ---- かたち --------------------------------------------
+     原典は角丸を使う。ただし2段だけ：チップは小さく、吹き出しは大きく。
+     その中間（6〜10px）を使うと、どちらでもない曖昧な形になる。 */
+  --r-0: 0;
+  --r-1: 3px;    /* 帯・小さいチップ */
+  --r-3: 14px;   /* 吹き出し・カード */
+  --r-pill: 999px;
+
+  --bd:       1px solid var(--c-line);
+  --bd-ink:   1px solid var(--c-ink);
+  --rule-dot: 1px dotted var(--c-ink);  /* 原典の署名的な罫。表の区切りはこれ */
+  /* 黒ベタ・水色ベタの上に引く点線。--rule-dot は黒なので反転面では消える。
+     --c-mute→--c-ground-mute と同じ「面ごとに持つ」原則を点線側にも通す */
+  --rule-dot-ground: 1px dotted var(--c-ground-line);
+  --sh-overlay: 0 2px 12px rgba(0, 0, 0, 0.16); /* 浮くものだけ */
+
+  --content-max: 1120px;
+  /* 版面の外側（ガター）に置く装飾図版の幅。本文の外なので版面には食い込まない */
+  --gutter-fig:  11rem;
+}
+
+/* ============================================================
+   バリエーション：2025年版のトーン
+   <html data-tone="soft"> で切り替える。
+   黒ベタと黄を後退させ、淡青の面と墨で組む。落ち着かせたい画面用。
+   構造・寸法は共通。色だけが替わる。
+   ============================================================ */
+[data-tone="soft"] {
+  --c-ink:     #231F20;  /* 純黒ではなく墨 */
+  --c-body:    #333031;
+  --c-mute:    #7B7979;
+  --c-line:    #C1CDDC;
+  --c-surface: #D8E7F7;  /* 淡青。2024版の淡グレーより色がある */
+  --c-paper:   #FFFFFF;
+
+  --c-ground:      #231F20;
+  --c-ground-ink:  #FFFFFF;
+  --c-ground-mute: #A3A0A1;
+  --c-ground-line: #4C4849;
+  --c-cool:        #D2E1E7;
+  --c-cool-ink:    #231F20;
+  --c-cool-mute:   #55686F;
+
+  --c-accent:     #FCD405;
+  --c-accent-ink: #231F20;
+
+  --c-blue: #4472C1;
+}
+
+/* ---- 土台 ------------------------------------------------ */
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  background: var(--c-paper);
+  color: var(--c-body);
+  font-family: var(--f-sans);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  /* 和文の約物を詰める。これを入れるかどうかで印象が大きく変わる */
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  color: var(--c-ink);
+  line-height: var(--lh-head);
+  letter-spacing: var(--ls-head);
+  margin: 0 0 var(--s-3);
+}
+h1 { font-size: var(--t-h1); font-weight: 900; }
+h2 { font-size: var(--t-h2); font-weight: 700; }
+h3 { font-size: var(--t-h3); font-weight: 700; }
+
+/* 欧文の小ラベル（見出しの上に置く前置き） */
+.label {
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--c-mute);
+}
+
+/* 欧文ディスプレイ。SUSTAINABILITY / PICK UP CONTENTS の類。
+   必ず大文字。小文字を混ぜると Futura 系の骨格が崩れる */
+.display {
+  font-family: var(--f-disp);
+  font-weight: 800;
+  font-size: var(--t-display);
+  letter-spacing: var(--ls-disp);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  line-height: var(--lh-tight);
+}
+
+/* ---- 原典の見出し装置 ------------------------------------
+   この報告書の見出しは「文字を大きくする」のではなく
+   「文字に地を敷く」ことで階層を作っている。 */
+
+/* 黄の帯に黒文字。ページ内で最も強い見出し。1画面に1つ */
+.band {
+  display: inline-block;
+  background: var(--c-accent);
+  color: var(--c-accent-ink);
+  font-weight: 900;
+  font-size: var(--t-h2);
+  line-height: 1.5;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-1);
+}
+/* 黒の帯に白文字。.band の一段下。説明文の頭に置く */
+.band-ink {
+  display: inline-block;
+  background: var(--c-ink);
+  color: var(--c-ground-ink);
+  font-weight: 700;
+  font-size: var(--t-h3);
+  line-height: 1.5;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-1);
+}
+
+/* 小さい黒ベタのラベル（重点施策 / STEP1 / 進化・深化） */
+.chip {
+  display: inline-block;
+  background: var(--c-ink);
+  color: var(--c-ground-ink);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px var(--s-2);
+  border-radius: var(--r-1);
+}
+.chip-accent { background: var(--c-accent); color: var(--c-accent-ink); }
+
+/* 丸番号。原典は黒丸に白抜き数字 */
+.num-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: var(--r-pill);
+  background: var(--c-ink); color: var(--c-ground-ink);
+  font-family: var(--f-num); font-size: var(--t-label); font-weight: 700;
+}
+
+/* 吹き出し。図解の注釈はカードではなくこれ */
+.bubble {
+  position: relative;
+  background: var(--c-paper);
+  border: var(--bd-ink);
+  border-radius: var(--r-3);
+  padding: var(--s-4) var(--s-5);
+}
+.bubble::after {
+  content: ""; position: absolute; left: var(--s-6); bottom: -9px;
+  width: 16px; height: 9px; background: inherit;
+  border-right: var(--bd-ink); border-bottom: var(--bd-ink);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* 黄は「文字色」ではなく「文字の背後」に使う */
+.mark { background: linear-gradient(transparent 62%, var(--c-accent) 62%); }
+.rule-accent { border-top: 4px solid var(--c-accent); }
+.rule-dot { border-top: var(--rule-dot); }
+
+/* リンク：黄文字はコントラスト不足。地の色＋黄の下線で示す */
+a {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--c-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ---- 面 --------------------------------------------------
+   原典は面を「白／淡グレー／黒／水色」の4つしか持たない。5つ目を作らない */
+.panel       { background: var(--c-surface); padding: var(--s-5); border-radius: var(--r-3); }
+.panel-ink   { background: var(--c-ground); color: var(--c-ground-ink); padding: var(--s-5); border-radius: var(--r-3); }
+.panel-ink h1, .panel-ink h2, .panel-ink h3 { color: var(--c-ground-ink); }
+.panel-cool  { background: var(--c-cool); color: var(--c-cool-ink); padding: var(--s-5); border-radius: var(--r-3); }
+.panel-cool h1, .panel-cool h2, .panel-cool h3 { color: var(--c-cool-ink); }
+
+/* 面は影ではなく罫で区切る */
+.card { background: var(--c-paper); border: var(--bd); border-radius: var(--r-3); padding: var(--s-5); }
+
+/* ---- 数値 ------------------------------------------------
+   原典の要：数値は極端に大きく、単位は極端に小さく、同じ行に置く */
+.num, td.num, .metric-value {
+  font-family: var(--f-num);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.metric-value { font-size: var(--t-display); font-weight: 700; line-height: var(--lh-tight); color: var(--c-ink); }
+.metric-label { font-size: var(--t-label); letter-spacing: var(--ls-label); color: var(--c-mute); text-transform: uppercase; }
+.metric-past  { color: var(--c-mute); } /* 過去値は必ず落とす。最新値だけ濃く */
+
+/* 単独で置く巨大数値。単位は .stat-unit で必ず小さく添える */
+.stat {
+  font-family: var(--f-num); font-variant-numeric: tabular-nums;
+  font-size: var(--t-hero); font-weight: 700; line-height: var(--lh-tight);
+  color: var(--c-ink); letter-spacing: -0.02em;
+}
+.stat-unit { font-family: var(--f-sans); font-size: var(--t-h3); font-weight: 700; margin-left: 2px; }
+
+/* ---- 表 --------------------------------------------------
+   縦罫を引かない。横罫は点線。行頭列は黒ベタ白文字 */
+table { border-collapse: collapse; width: 100%; font-size: var(--t-small); }
+th {
+  text-align: left; color: var(--c-mute); font-weight: 700;
+  font-size: var(--t-label); letter-spacing: 0.08em;
+  padding: var(--s-2) var(--s-3); border-bottom: var(--bd-ink);
+}
+td { padding: var(--s-3); border-bottom: var(--rule-dot); color: var(--c-body); }
+tbody tr:hover { background: var(--c-surface); }
+/* 行の主語になる先頭セル */
+.table-lead {
+  background: var(--c-ink); color: var(--c-ground-ink);
+  font-weight: 700; font-size: var(--t-small);
+  border-bottom: 1px solid var(--c-paper);
+}
+
+/* ---- ボタン ----------------------------------------------
+   主 1つだけ黄。他は地＋罫 */
+.btn {
+  font-family: inherit; font-size: var(--t-small); font-weight: 700;
+  padding: var(--s-2) var(--s-5); border: var(--bd-ink); border-radius: var(--r-1);
+  background: var(--c-paper); color: var(--c-ink); cursor: pointer;
+  line-height: 1.5;
+}
+.btn-primary { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-accent-ink); }
+.btn:focus-visible { outline: 2px solid var(--c-ink); outline-offset: 2px; }

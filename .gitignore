@@ -1,3 +1,5 @@
 node_modules/
 _site/
 .jekyll-cache/
+tools/map/svg.txt
+tools/map/flows.json

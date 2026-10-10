@@ -4,14 +4,23 @@
 
 **サイト: https://soy-tuber.github.io/nissan-notes/**
 
-| 記事 | 内容 |
+| ページ | 内容 |
 |---|---|
-| `nissan_dialogue.md` | 現場と数字で日産を読む — 受注・供給の天井・Re:Nissan・限界利益の逆算・関税・中国 |
+| `index.md` | トップ。主要指標の帯と、月次販売から生成するスカイライン |
+| `psr.html` | 日産PSR分析 — 決算実績・会社ガイダンス・株価シナリオ計算機（マツダとの通期比較はここが正本） |
+| `cvp.md` | Re:Nissanを踏まえたCVP分析 — 一台あたり限界利益と損益分岐点、監視指標14項目 |
+| `monthly.html` | 月次 生産・販売・輸出 |
+| `map.html` | グローバル物流マップ — 生産地と仕向地を大圏コースで結ぶ |
+| `launches.html` | グローバル投入カレンダー — 発売・工場配置の台帳 |
+| `nissan_dialogue.md` | 現場と数字で日産を読む — 受注・供給の天井・Re:Nissan・限界利益の逆算・関税・中国・エスピノーサの経営 |
 | `stephen_ma_china.md` | スティーブン・マーと中国日産 |
 | `dual_core_mobility.md` | デュアルコア・モビリティ【改訂版】— THS と e-POWER の技術対談 |
-| `map.html` | グローバル物流マップ — 生産地と仕向地を大圏コースで結ぶ |
-| `wayve_roadmap.html` | Wayve × Nissan ロードマップ |
+| `wayve_roadmap.html` | Wayve × Nissan ロードマップ — SDV・自動運転・課金モデル |
 | `dual_core_shinsho.pdf` | デュアルコア・モビリティ（新書体裁版） |
+
+### 記述の分担
+
+同じ事実を複数ページで繰り返さないため、正本を決めています。**マツダとの通期損益比較**は `psr.html`、**5-in-1ユニットの海外生産**と**サンダーランドの稼働率・チェリー受託**は `launches.html` の工場別一覧、**コスト削減のネット残余と監視指標**は `cvp.md`。他のページからは要点だけを引いて相互にリンクします。
 
 ## 構成
 
@@ -49,14 +58,7 @@ jekyll serve                   # http://127.0.0.1:4000/nissan-notes/
 
 ## デザイン参照MCP（inspo）
 
-`.mcp.json` に [inspo](https://github.com/Nutlope/inspo) を設定しています。実在サイトのキャプチャ・パレット・タイプランプ・コンポーネントを参照できるMCPで、UIを書く前に「見本」を引くために使います。
-
-ローカルのClaude Codeなら、リポジトリを開き直せば有効になります（`npx -y inspo-mcp`）。ホスト版を使う場合は次のいずれか。
-
-```
-npx -y inspo-mcp install
-claude mcp add --transport http inspo https://inspomcp.dev/api/mcp
-```
+`.mcp.json` に [inspo](https://github.com/Nutlope/inspo) を設定しています（`npx -y inspo-mcp`）。UIを書く前に実在サイトのパレット・タイプランプを引くためのもので、ローカルのClaude Codeならリポジトリを開き直せば有効になります。クラウドのセッションからは外向き通信が塞がれていて接続できません。
 
 ## 注記
 

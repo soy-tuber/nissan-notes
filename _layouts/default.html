@@ -102,6 +102,14 @@ blockquote{margin:2.1rem 0;padding:1.2rem 1.4rem;background:var(--panel);
   border-left:2px solid var(--cy);box-shadow:inset 3px 0 14px -8px var(--cy)}
 blockquote p{font-size:.94rem;margin-bottom:.8rem}
 blockquote p:last-child{margin-bottom:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.1rem .9rem;
+  margin:.4rem 0 1.4rem;padding:.9rem 1rem;background:var(--panel);border:1px solid var(--rule2);
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.toc a{display:block;padding:.26rem 0;font-size:.86rem;line-height:1.45;color:var(--fg);
+  text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{color:var(--cy);border-bottom-color:var(--rule2)}
+.toc a .n{font-family:var(--mono);font-size:.72rem;color:var(--cy);margin-right:.5rem;letter-spacing:.06em}
+.toc a .n{display:inline-block;min-width:3.4rem}
 .note{background:var(--panel);border:1px solid var(--rule2);border-left:2px solid var(--cy);
   padding:1rem 1.25rem;margin:1.7rem 0;font-size:.89rem;line-height:1.85;
   clip-path:polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)))}
@@ -290,6 +298,21 @@ document.querySelectorAll('main table').forEach(function(t){
     p.replaceChild(w,s);
     p.classList.add('say'); if(AI.test(name)) p.classList.add('say-ai');
   });
+})();
+(function(){
+  var nav=document.querySelector('[data-toc]'); if(!nav) return;
+  var esc=function(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})};
+  var idn=0,num=0,out=[];
+  document.querySelectorAll('main > .wrap > h2').forEach(function(h){
+    if(!(nav.compareDocumentPosition(h)&Node.DOCUMENT_POSITION_FOLLOWING)) return;
+    var t=h.textContent.trim();
+    if(!t||/^(まえがき|目次|あとがき)$/.test(t)) return;
+    if(!h.id){h.id='toc'+(++idn)}
+    var m=t.match(/^(第[一二三四五六七八九十]+章|終章|序章)[　\s]*(.*)$/);
+    out.push('<a href="#'+h.id+'">'+(m?'<span class="n">'+esc(m[1])+'</span>'+esc(m[2])
+      :'<span class="n">'+String(++num).padStart(2,'0')+'</span>'+esc(t))+'</a>');
+  });
+  if(out.length) nav.innerHTML=out.join('');
 })();
 (function(){
   var bar=document.getElementById('prog');

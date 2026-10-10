@@ -116,7 +116,7 @@ title: 日産分析ノート
 <div><span class="k">FY25 売上高</span><span class="v">12.01兆</span><span class="s">営業利益580億／OPM 0.5%</span></div>
 <div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">うち減損3,662億</span></div>
 <div><span class="k">FY26 Q1 営業利益</span><span class="v p">779億</span><span class="s">前年同期比 +1,570億</span></div>
-<div><span class="k">エルグランド受注</span><span class="v">8,900台</span><span class="s">8/23時点／天井は月2,000台</span></div>
+<div><span class="k">エルグランド受注</span><span class="v">9,000台超</span><span class="s">キックスは13,000件超／天井は月2,000台</span></div>
 <div><span class="k">8月 中国販売</span><span class="v n">▲51.9%</span><span class="s">4〜8月累計 ▲41.9%</span></div>
 <div><span class="k">8月 国内生産</span><span class="v p">+9.2%</span><span class="s">5か月連続で前年超え</span></div>
 </div>
@@ -164,7 +164,7 @@ title: 日産分析ノート
 <a class="tile lead" href="nissan_dialogue.html">
 <span class="chip">Dialogue</span><span class="arw">→</span>
 <span class="t">現場と数字で日産を読む</span>
-<span class="d">エルグランドとキックスの受注から始まり、供給の天井、Re:Nissanによる固定費の解体、一台あたり限界利益七十万円の逆算、関税の算数、中国という別勘定まで。2026年度第1四半期決算までを織り込んだ全面改訂版。</span>
+<span class="d">エルグランドとキックスの受注から始まり、供給の天井、Re:Nissanによる固定費の解体、一台あたり限界利益七十万円の逆算、関税の算数、中国という別勘定まで。エスピノーサCEOが語った三つの柱・組織改革・引き際までを織り込んだ改訂版。</span>
 </a>
 
 <a class="tile" href="stephen_ma_china.html">

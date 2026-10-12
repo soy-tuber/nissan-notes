@@ -272,7 +272,7 @@ footer.site a{color:var(--muted)}
     <a href="{{ '/nissan_dialogue.html' | relative_url }}">dialogue</a>
   </nav>
 </div></header>
-<main><div class="wrap">{{ content }}</div></main>
+<main{% if page.speakers %} data-speakers="{{ page.speakers }}"{% endif %}><div class="wrap">{{ content }}</div></main>
 <footer class="site"><div class="wrap">
 <p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
 <a class="totop" href="#">↑ TOP</a>
@@ -286,11 +286,14 @@ document.querySelectorAll('main table').forEach(function(t){
 });
 (function(){
   var AI=/^(opus|fable|claude|ai)$/i;
+  var decl=(document.querySelector('main[data-speakers]')||{dataset:{}}).dataset.speakers;
+  if(!decl) return;                       // front matter に speakers がないページは変換しない
+  var ok={}; decl.trim().split(/\s+/).forEach(function(n){ok[n]=1});
   document.querySelectorAll('main > .wrap > p').forEach(function(p){
     var s=p.firstElementChild;
     if(!s||s.tagName!=='STRONG'||s!==p.firstChild) return;
     var name=s.textContent.trim();
-    if(!name||name.length>12||/[。、：:]$/.test(name)) return;
+    if(!ok[name]) return;                 // 宣言された話者名だけを変換する
     var next=s.nextSibling;
     if(!next||next.nodeType!==3||!/^[　\s]/.test(next.nodeValue)) return;
     next.nodeValue=next.nodeValue.replace(/^[　\s]+/,'');

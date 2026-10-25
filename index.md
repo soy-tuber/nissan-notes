@@ -134,7 +134,7 @@ title: 日産分析ノート
 <a class="tile" href="cvp.html">
 <span class="chip">CVP</span><span class="arw">→</span>
 <span class="t">Re:Nissanを踏まえたCVPシナリオ分析</span>
-<span class="d">一台あたり限界利益と損益分岐台数で今期・来期を読む。5,000億円のコスト削減がP&amp;Lのどこで消えているかを追う、損益分岐点シミュレータ付き。</span>
+<span class="d">一台あたり限界利益と損益分岐台数で読む。5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。監視指標16項目と損益分岐点シミュレータ付き。</span>
 </a>
 
 <a class="tile" href="monthly.html">
@@ -164,7 +164,7 @@ title: 日産分析ノート
 <a class="tile lead" href="nissan_dialogue.html">
 <span class="chip">Dialogue</span><span class="arw">→</span>
 <span class="t">現場と数字で日産を読む</span>
-<span class="d">エルグランドとキックスの受注から始まり、供給の天井、Re:Nissanによる固定費の解体、一台あたり限界利益七十万円の逆算、関税の算数、中国という別勘定まで。エスピノーサCEOが語った三つの柱・組織改革・引き際までを織り込んだ改訂版。</span>
+<span class="d">エルグランドとキックスの受注から始まり、供給の天井、Re:Nissanによる固定費の解体、一台あたり限界利益七十万円の逆算、関税の算数、中国という別勘定まで。エスピノーサCEOの三つの柱と引き際、そして<strong>コスト削減が効かなくなるFY2027</strong>までを扱う全12章＋終章。</span>
 </a>
 
 <a class="tile" href="stephen_ma_china.html">

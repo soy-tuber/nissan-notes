@@ -102,6 +102,14 @@ blockquote{margin:2.1rem 0;padding:1.2rem 1.4rem;background:var(--panel);
   border-left:2px solid var(--cy);box-shadow:inset 3px 0 14px -8px var(--cy)}
 blockquote p{font-size:.94rem;margin-bottom:.8rem}
 blockquote p:last-child{margin-bottom:0}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.1rem .9rem;
+  margin:.4rem 0 1.4rem;padding:.9rem 1rem;background:var(--panel);border:1px solid var(--rule2);
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.toc a{display:block;padding:.26rem 0;font-size:.86rem;line-height:1.45;color:var(--fg);
+  text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{color:var(--cy);border-bottom-color:var(--rule2)}
+.toc a .n{font-family:var(--mono);font-size:.72rem;color:var(--cy);margin-right:.5rem;letter-spacing:.06em}
+.toc a .n{display:inline-block;min-width:3.4rem}
 .note{background:var(--panel);border:1px solid var(--rule2);border-left:2px solid var(--cy);
   padding:1rem 1.25rem;margin:1.7rem 0;font-size:.89rem;line-height:1.85;
   clip-path:polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)))}
@@ -188,7 +196,7 @@ li::marker{color:var(--cy)}
   100%{opacity:1;text-shadow:0 0 22px rgba(45,226,255,.22)}
 }
 @media (prefers-reduced-motion:reduce){.hero h1{animation:none}
-  .cur{animation:none} .city svg animate{display:none}}
+  .cur{animation:none}}
 .hero .lede{font-size:1rem;color:var(--muted);margin:0;max-width:34rem}
 .hero .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--faint);margin:1.1rem 0 0}
 .sec{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--cy);
@@ -227,19 +235,6 @@ li::marker{color:var(--cy)}
 .tile.lead::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
   background:linear-gradient(180deg,var(--cy),var(--vi));box-shadow:0 0 12px var(--cy)}
 
-/* ---------- 月次シティ ---------- */
-.city{margin:1.8rem 0 .4rem;border:1px solid var(--rule2);background:#05070c;position:relative;
-  overflow:hidden}
-.city svg{display:block;width:100%;height:auto;margin:0}
-.city .bar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;
-  padding:.45rem .8rem;border-bottom:1px solid var(--rule2);background:var(--panel);
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--faint);
-  text-transform:uppercase;flex-wrap:wrap}
-.city .cap{color:var(--cy);text-shadow:0 0 10px rgba(45,226,255,.4)}
-.city .lg{letter-spacing:.06em;text-transform:none;white-space:nowrap}
-.city .lg b{font-weight:400}
-.city .lg .c{color:var(--gr)} .city .lg .m{color:var(--mg)}
-
 /* ---------- フッター ---------- */
 footer.site{border-top:1px solid var(--rule2);margin-top:5rem;padding:2rem 0 3.5rem;
   color:var(--faint);font-size:.8rem;line-height:1.9}
@@ -264,7 +259,7 @@ footer.site a{color:var(--muted)}
     <a href="{{ '/nissan_dialogue.html' | relative_url }}">dialogue</a>
   </nav>
 </div></header>
-<main><div class="wrap">{{ content }}</div></main>
+<main{% if page.speakers %} data-speakers="{{ page.speakers }}"{% endif %}><div class="wrap">{{ content }}</div></main>
 <footer class="site"><div class="wrap">
 <p>本サイトの内容は情報提供を目的としたものであり、投資勧誘・投資助言ではありません。数値には開示情報からの推定・逆算が含まれます。</p>
 <a class="totop" href="#">↑ TOP</a>
@@ -278,11 +273,14 @@ document.querySelectorAll('main table').forEach(function(t){
 });
 (function(){
   var AI=/^(opus|fable|claude|ai)$/i;
+  var decl=(document.querySelector('main[data-speakers]')||{dataset:{}}).dataset.speakers;
+  if(!decl) return;                       // front matter に speakers がないページは変換しない
+  var ok={}; decl.trim().split(/\s+/).forEach(function(n){ok[n]=1});
   document.querySelectorAll('main > .wrap > p').forEach(function(p){
     var s=p.firstElementChild;
     if(!s||s.tagName!=='STRONG'||s!==p.firstChild) return;
     var name=s.textContent.trim();
-    if(!name||name.length>12||/[。、：:]$/.test(name)) return;
+    if(!ok[name]) return;                 // 宣言された話者名だけを変換する
     var next=s.nextSibling;
     if(!next||next.nodeType!==3||!/^[　\s]/.test(next.nodeValue)) return;
     next.nodeValue=next.nodeValue.replace(/^[　\s]+/,'');
@@ -290,6 +288,21 @@ document.querySelectorAll('main table').forEach(function(t){
     p.replaceChild(w,s);
     p.classList.add('say'); if(AI.test(name)) p.classList.add('say-ai');
   });
+})();
+(function(){
+  var nav=document.querySelector('[data-toc]'); if(!nav) return;
+  var esc=function(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})};
+  var idn=0,num=0,out=[];
+  document.querySelectorAll('main > .wrap > h2').forEach(function(h){
+    if(!(nav.compareDocumentPosition(h)&Node.DOCUMENT_POSITION_FOLLOWING)) return;
+    var t=h.textContent.trim();
+    if(!t||/^(まえがき|目次|あとがき)$/.test(t)) return;
+    if(!h.id){h.id='toc'+(++idn)}
+    var m=t.match(/^(第[一二三四五六七八九十]+章|終章|序章)[　\s]*(.*)$/);
+    out.push('<a href="#'+h.id+'">'+(m?'<span class="n">'+esc(m[1])+'</span>'+esc(m[2])
+      :'<span class="n">'+String(++num).padStart(2,'0')+'</span>'+esc(t))+'</a>');
+  });
+  if(out.length) nav.innerHTML=out.join('');
 })();
 (function(){
   var bar=document.getElementById('prog');

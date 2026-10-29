@@ -7,7 +7,7 @@ title: 日産分析ノート
 <h1>日産分析ノート</h1>
 
 <p class="lede">決算資料の数字を分解し、開示されない固定費や一台あたり限界利益を逆算しながら、現場で確かめた事実と突き合わせる。日産自動車（7201）と、日産車体（7222）・日産東京販売HD（8291）をめぐる分析ノートです。</p>
-<p class="meta">LAST BUILD 2026.10.04</p>
+<p class="meta">LAST BUILD 2026.10.29</p>
 </div>
 
 <div class="city">
@@ -22,7 +22,7 @@ title: 日産分析ノート
 (function(){
   var D={
     2025:[94.1,92.2,96.6,92.8,94.0,95.1,100.5,102.8,96.4,95.2,95.1,93.3],
-    2026:[100.6,92.6,93.1,92.4,89.7,91.7,83.5,82.5,null,null,null,null]
+    2026:[100.6,92.6,93.1,92.4,89.7,91.7,83.5,82.5,89.8,null,null,null]
   };
   var CY='#2de2ff', MG='#ff2e6b';
   function rnd(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);
@@ -116,9 +116,9 @@ title: 日産分析ノート
 <div><span class="k">FY25 売上高</span><span class="v">12.01兆</span><span class="s">営業利益580億／OPM 0.5%</span></div>
 <div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">うち減損3,662億</span></div>
 <div><span class="k">FY26 Q1 営業利益</span><span class="v p">779億</span><span class="s">前年同期比 +1,570億</span></div>
-<div><span class="k">エルグランド受注</span><span class="v">9,000台超</span><span class="s">キックスは13,000件超／天井は月2,000台</span></div>
-<div><span class="k">8月 中国販売</span><span class="v n">▲51.9%</span><span class="s">4〜8月累計 ▲41.9%</span></div>
-<div><span class="k">8月 国内生産</span><span class="v p">+9.2%</span><span class="s">5か月連続で前年超え</span></div>
+<div><span class="k">エルグランド受注</span><span class="v">1万台超</span><span class="s">9月度発表／天井は月2,000台</span></div>
+<div><span class="k">9月 グローバル販売</span><span class="v n">▲10.2%</span><span class="s">中国を除くと +4.4%</span></div>
+<div><span class="k">9月 国内生産</span><span class="v p">+14.0%</span><span class="s">6か月連続で前年超え</span></div>
 </div>
 
 <p class="sec">分析・データ</p>

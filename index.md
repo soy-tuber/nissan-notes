@@ -11,12 +11,12 @@ title: 日産分析ノート
 </div>
 
 <div class="strip">
-<div><span class="k">FY25 売上高</span><span class="v">12.01兆</span><span class="s">営業利益580億／OPM 0.5%</span></div>
-<div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">うち減損3,662億</span></div>
+<div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">売上12.01兆／OPM 0.5%／うち減損3,662億</span></div>
 <div><span class="k">FY26 上期 営業利益</span><span class="v p">800億</span><span class="s">Q1 779億＋Q2 21億</span></div>
 <div><span class="k">自動車事業 粗利率</span><span class="v n">13.62%→10.54%</span><span class="s">Q1→Q2／一過性を戻すと11.3→11.9%・日産車体は6.4→8.9%</span></div>
 <div><span class="k">エルグランド受注</span><span class="v">1万1,000台</span><span class="s">キックスは2万台／10月末時点</span></div>
 <div><span class="k">FY26 通期見通し</span><span class="v">営業2,000億</span><span class="s">維持／台数は297〜300万台へ下方修正</span></div>
+<div><span class="k">正常収益力（試算）</span><span class="v">EPS 64〜80円</span><span class="s">営業4,000〜4,500億／外債→円債の借り換え後</span></div>
 </div>
 
 <p class="sec">分析・データ</p>
@@ -26,7 +26,7 @@ title: 日産分析ノート
 <a class="tile" href="psr.html">
 <span class="chip">PSR</span><span class="arw">→</span>
 <span class="t">日産PSR分析</span>
-<span class="d">FY25実績・FY26会社ガイダンス・FY26第1四半期実績の主要数値と、Re:Nissan後の株価シナリオ計算機。売上高・営業利益率・PERを動かすと想定株価とフィッシャーPSRがその場で再計算されます。マツダとの通期損益比較つき。</span>
+<span class="d">FY25実績・FY26会社ガイダンス・四半期実績の主要数値と、<strong>リストラ後の正常収益力とEPSの積み上げ</strong>。営業利益・外債から円債への借り換え金利差・税率・為替を動かすと正常EPSと想定株価が再計算されます。Re:Nissan後の株価シナリオ計算機、日産車体を使った粗利の検算、マツダとの通期損益比較つき。</span>
 </a>
 
 <a class="tile" href="cvp.html">

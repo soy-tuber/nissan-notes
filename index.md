@@ -32,7 +32,7 @@ title: 日産分析ノート
 <a class="tile" href="cvp.html">
 <span class="chip">CVP</span><span class="arw">→</span>
 <span class="t">Re:Nissanを踏まえたCVPシナリオ分析</span>
-<span class="d">連結を自動車事業と販売金融に割り、<strong>営業利益だけでなく粗利まで四半期で分解する</strong>。一台あたり限界利益と損益分岐台数、5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。二つの軸と監視指標19項目と損益分岐点シミュレータ付き。</span>
+<span class="d">連結を自動車事業と販売金融に割り、<strong>営業利益だけでなく粗利まで四半期で分解する</strong>。一台あたり限界利益と損益分岐台数、5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。二つの軸と監視指標21項目と損益分岐点シミュレータ付き。</span>
 </a>
 
 <a class="tile" href="monthly.html">

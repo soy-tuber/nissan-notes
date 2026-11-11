@@ -14,7 +14,7 @@ title: 日産分析ノート
 <div><span class="k">FY25 売上高</span><span class="v">12.01兆</span><span class="s">営業利益580億／OPM 0.5%</span></div>
 <div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">うち減損3,662億</span></div>
 <div><span class="k">FY26 上期 営業利益</span><span class="v p">800億</span><span class="s">Q1 779億＋Q2 21億</span></div>
-<div><span class="k">自動車事業 粗利率</span><span class="v n">13.62%→10.54%</span><span class="s">Q1→Q2／一過性を戻すと11.3→11.9%</span></div>
+<div><span class="k">自動車事業 粗利率</span><span class="v n">13.62%→10.54%</span><span class="s">Q1→Q2／一過性を戻すと11.3→11.9%・日産車体は6.4→8.9%</span></div>
 <div><span class="k">エルグランド受注</span><span class="v">1万1,000台</span><span class="s">キックスは2万台／10月末時点</span></div>
 <div><span class="k">FY26 通期見通し</span><span class="v">営業2,000億</span><span class="s">維持／台数は297〜300万台へ下方修正</span></div>
 </div>
@@ -32,7 +32,7 @@ title: 日産分析ノート
 <a class="tile" href="cvp.html">
 <span class="chip">CVP</span><span class="arw">→</span>
 <span class="t">Re:Nissanを踏まえたCVPシナリオ分析</span>
-<span class="d">連結を自動車事業と販売金融に割り、<strong>営業利益だけでなく粗利まで四半期で分解する</strong>。一台あたり限界利益と損益分岐台数、5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。監視指標20項目と損益分岐点シミュレータ付き。</span>
+<span class="d">連結を自動車事業と販売金融に割り、<strong>営業利益だけでなく粗利まで四半期で分解する</strong>。一台あたり限界利益と損益分岐台数、5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。二つの軸と監視指標19項目と損益分岐点シミュレータ付き。</span>
 </a>
 
 <a class="tile" href="monthly.html">

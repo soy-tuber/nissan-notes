@@ -7,16 +7,16 @@ title: 日産分析ノート
 <h1>日産分析ノート</h1>
 
 <p class="lede">決算資料の数字を分解し、開示されない固定費や一台あたり限界利益を逆算しながら、現場で確かめた事実と突き合わせる。日産自動車（7201）と、日産車体（7222）・日産東京販売HD（8291）をめぐる分析ノートです。</p>
-<p class="meta">LAST BUILD 2026.11.07</p>
+<p class="meta">LAST BUILD 2026.11.11</p>
 </div>
 
 <div class="strip">
 <div><span class="k">FY25 売上高</span><span class="v">12.01兆</span><span class="s">営業利益580億／OPM 0.5%</span></div>
 <div><span class="k">FY25 当期純損益</span><span class="v n">▲5,331億</span><span class="s">うち減損3,662億</span></div>
-<div><span class="k">FY26 Q1 営業利益</span><span class="v p">779億</span><span class="s">前年同期比 +1,570億</span></div>
-<div><span class="k">エルグランド受注</span><span class="v">1万台超</span><span class="s">9月度発表／天井は月2,000台</span></div>
-<div><span class="k">9月 グローバル販売</span><span class="v n">▲10.2%</span><span class="s">中国を除くと +4.4%</span></div>
-<div><span class="k">9月 国内生産</span><span class="v p">+14.0%</span><span class="s">6か月連続で前年超え</span></div>
+<div><span class="k">FY26 上期 営業利益</span><span class="v p">800億</span><span class="s">Q1 779億＋Q2 21億</span></div>
+<div><span class="k">自動車事業 粗利率</span><span class="v n">13.62%→10.54%</span><span class="s">Q1→Q2／一過性を戻すと11.3→11.9%</span></div>
+<div><span class="k">エルグランド受注</span><span class="v">1万1,000台</span><span class="s">キックスは2万台／10月末時点</span></div>
+<div><span class="k">FY26 通期見通し</span><span class="v">営業2,000億</span><span class="s">維持／台数は297〜300万台へ下方修正</span></div>
 </div>
 
 <p class="sec">分析・データ</p>
@@ -32,7 +32,7 @@ title: 日産分析ノート
 <a class="tile" href="cvp.html">
 <span class="chip">CVP</span><span class="arw">→</span>
 <span class="t">Re:Nissanを踏まえたCVPシナリオ分析</span>
-<span class="d">一台あたり限界利益と損益分岐台数で読む。5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。監視指標18項目と損益分岐点シミュレータ付き。</span>
+<span class="d">連結を自動車事業と販売金融に割り、<strong>営業利益だけでなく粗利まで四半期で分解する</strong>。一台あたり限界利益と損益分岐台数、5,000億円のコスト削減がP&amp;Lのどこで消えているか、そして<strong>Re:Nissanが終わったFY2027の増益がどこから来るのか</strong>。監視指標20項目と損益分岐点シミュレータ付き。</span>
 </a>
 
 <a class="tile" href="monthly.html">

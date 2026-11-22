@@ -471,8 +471,23 @@
       <div class="watch">日産がAI-DVの安全性をどう説明するか（倍率型か、閉ループ評価型か）。Wayveが数値を出すか。そして検証の主体が、Wayve・ヴァレオ・日産のどこに置かれるか</div>
     </div>
 
+    <div class="risk" style="margin-top:12px">
+      <div class="rh"><span class="rn">S-8</span><h4>Learned Safety ── 安全を、後付けのフィルタから意思決定の中へ</h4></div>
+      <p>S-7で見たValidation 2.0は、実は<b>三部構成の一本にすぎない</b>。Wayveは「Learned Safety」を <b>Build（組み込む）／Ground（接地させる）／Validate（証拠に変える）</b> の三部で公開しており、Validation 2.0は三本目にあたる。</p>
+      <p><b>Build ── 学習版のDoer–Checker。</b> 従来のAV 1.0は、AIが経路を決めた<b>後に</b>人間が書いたルールベースの安全チェッカーを<b>後付け</b>していた。Wayveはそれを分離したモデルとして持たず、<b>共通のシーン理解の上に、別々の学習目標を持つタスクとして分ける</b> ── ①どう動くか（運転）、②いまどこが安全か（リスク予測）、③確信を持って続けられるか（確信度）。<b>別のニューラルネットではなく、別のタスク</b>である。Wayve自身がこれを<b>「Doer–Checker原則の学習版」</b>と呼んでいる。</p>
+      <p><b>Learned Safety Envelope（LSE）</b>はその可視化で、安全マージンをヒートマップで示す。固定ルール型との差は、<b>物体を完全に認識し終える前から反応する</b>点にある ── 駐車車両の窓越しに自転車乗りの頭が数フレーム見えた段階で、前方に赤いリスク領域が立ち上がる。Wayveは<b>手作業のラベルや固定しきい値ではなく、運転データからエンドツーエンドで学習させた</b>と説明している。</p>
+      <p><b>Ground ── 言語は助手席に座らせる。</b> ここが本ページにとっていちばん重い。Wayveは、言語・推論モデル（LINGO系）を<b>不慣れな状況の解釈・危険の先読み・意図の補強</b>に使う一方で、<b>ミリ秒単位の制御ループには入れない</b>という線を引いている。Wayveの言葉はこうである ── <b>「もっともらしい思考の連鎖（chain of thought）は、それ自体ではその行動が安全だったことを示さない」</b>。評価すべきは語りではなく車両の挙動である、と。</p>
+      <div class="risk" style="border-left-color:var(--open);margin:14px 0 0;padding:12px 14px">
+        <p style="margin:0 0 8px"><b>そしてこれは、NVIDIA Alpamayoと正面からぶつかる。</b></p>
+        <p style="margin:0 0 8px">NVIDIAが2026年1月のCESで公開した<b>Alpamayo</b>は、<b>100億パラメータのVision-Language-Actionモデル</b>で、<b>「業界初のchain-of-thought推論VLA」</b>を名乗る。希少な場面を<b>言語で考え抜き、運転判断を説明できる</b>ことを売りにし、オープンモデルとして配布され、シミュレーション基盤<b>AlpaSim</b>も付く。最初の搭載車は<b>メルセデス・ベンツCLA</b>のL2++である（時期は報道で割れる <b>要確認</b>）。</p>
+        <p style="margin:0"><b>つまりメルセデスは、言語を制御ループに入れるモデルと、入れないと明言するモデルを、同じL2++の帯で並走させている。</b> S-3で「Wayveは独占供給ではない」と書いたが、<b>併存している二つは、アーキテクチャの思想が逆</b>だった。日産にとっては他人事ではない ── 次世代ProPILOTのSoC候補にはQualcommが挙がっているが（S-5）、<b>どちらの思想を採るかは、SoCの選定より上流の決定</b>である。</p>
+      </div>
+      <p>なお<b>ここでもWayveを持ち上げすぎてはいけない</b>。Wayve自身が「<b>可視化できることだけでは、運転システム全体が安全であることの証明にはならない</b>」と書いており、LSEの効果も<b>数値は非公開</b>のままである（S-7）。<b>どちらの思想が正しいかは、まだ誰も証明していない。</b></p>
+      <div class="watch">日産のAI-DVが、言語・推論モデルを制御ループのどこに置くか。そしてメルセデスCLA（Alpamayo）とメルセデスのWayve搭載車が、同じ市場で並んだときの挙動の差</div>
+    </div>
+
     <div class="risk" style="border-left-color:var(--risk);margin-top:12px">
-      <div class="rh"><span class="rn">S-8</span><h4>無人走行の実績は、まだゼロ</h4></div>
+      <div class="rh"><span class="rn">S-9</span><h4>無人走行の実績は、まだゼロ</h4></div>
       <p>ロンドンの運行は<b>全車に安全ドライバーが乗る</b>。グレーターロンドン内で空港発着は除外、車両は15台。ここは精度が要る ── <b>TfLが出したのは「貸切車両（PHV）」の免許であって、自動運転車としての認可ではない</b>（TfL自身が明言）。安全ドライバーを降ろすには<b>DVSAの Automated Passenger Services（APS）許可</b>が別途必要で、<b>Wayve／Uberはまだ手続きを開始していない</b>。<b>Wayveの無人走行の実績は、まだ一マイルもない。</b></p>
       <p>テスラは第3四半期末で<b>無人累計約200万マイル</b>、米国<b>6都市圏</b>（10月21日の決算説明会時点。その後フォートワース11月2日・サンアントニオ11月9日が加わったとの報道 ── 現在の都市数は<b>要確認</b>）。ただしどこも<b>狭いジオフェンス内の低速運行</b>で、高速道路はほぼ使わない。ベイエリアは州の規制で安全ドライバーが乗る。そして<b>オーナー車での無人走行は2027年第2四半期の予定</b>で、これはオーナーが自分の車をRobotaxi車隊に登録する形であり、個人用の自動運転モードとは別物である。</p>
       <p><b>後述のR-5（zero-shot ≠ driverless）で触れる距離は、まだ縮んでいない。</b> 日産にとってのAI-DVは2027年度の<b>レベル2</b>であり、無人化はその先の別の話である。</p>
@@ -844,6 +859,10 @@
       Wayve — <b>Validation 2.0</b>＝GAIA-4（クローズドループ）＋GRADER（学習型採点・交通ルール非供与）＋統計的エビデンス移転。<br>
       　GAIA-4は2026-08-03公開、World-on-Rails／Reactive Agents切替、ドップラーを含む合成レーダー。Learned Safety Envelopeは数値非公開。<br>
       　外部評価：「スケールは報告しているが安全のoutcomeを報告していない」／Phil Koopman（CMU）「ありうる複数のアプローチの一つ」<br>
+      Wayve — <b>Learned Safety</b>＝Build（LSE・学習版Doer–Checker：運転／リスク予測／確信度を別タスクに分離）／Ground（LINGO・言語は非ブロッキング）／Validate（Validation 2.0）。<br>
+      　Wayveの言明：「もっともらしいchain of thoughtは、それ自体では行動が安全だったことを示さない」「可視化だけでは全体の安全の証明にならない」<br>
+      NVIDIA — <b>Alpamayo</b>（CES 2026-01公開・100億パラメータの推論VLA・「業界初のchain-of-thought推論VLA」・オープンモデル・AlpaSim付属）。<br>
+      　初搭載はメルセデス・ベンツCLAのL2++（時期は報道で割れる）。バックボーンの呼称も Alpamayo R1 / Cosmos-Reason 8.2B で揺れる<br>
       Waymo — World Model（2026-02・DeepMind Genie 3ベース・LiDAR点群も生成）。世界モデルへの移行は業界横断の動き<br>
       Wayve（07節で追加）— <b>GAIA-4</b>（映像＋レーダー生成・閉ループ評価）, シリーズD 12億ドル／評価額86億ドル（2026-02-25）,<br>
       　Qualcomm Snapdragon Ride 技術協業（2026-03）, ステランティス戦略提携（2026-05）＋Uber三者のL4 MoU（2026-06-17）,<br>

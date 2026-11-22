@@ -1,7 +1,6 @@
 ---
 title: 現場と数字で日産を読む
 speakers: Soy Opus
-cast: painter-b mechanic-a racer-a muscle-b radio-b
 ---
 
 # 現場と数字で日産を読む

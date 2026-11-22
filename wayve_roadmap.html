@@ -185,24 +185,6 @@
      暗い地なので線画が沈む。白の極細ドロップシャドウで輪郭を起こす。 */
   body{position:relative}
   header,section,footer{position:relative;z-index:1}
-  .deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;display:none}
-  .deco img{position:absolute;width:170px;height:auto;opacity:.92;
-    filter:drop-shadow(0 0 1px rgba(255,255,255,.5)) drop-shadow(0 4px 12px rgba(0,0,0,.55))}
-  .deco .d1{top:3%;  right:calc(50% + 500px)}
-  .deco .d2{top:25%; left: calc(50% + 500px)}
-  .deco .d3{top:47%; right:calc(50% + 500px)}
-  .deco .d4{top:69%; left: calc(50% + 500px)}
-  .deco .d5{top:88%; right:calc(50% + 500px)}
-  /* 920 + (40 + 170)×2 = 1340。居場所が取れない幅では出さない */
-  @media(min-width:1360px){ .deco{display:block} }
-  /* 狭い画面はガターが無いので、記事末尾に一列で出す */
-  .cast-strip{display:none}
-  @media(max-width:1359px){
-    .cast-strip{display:flex;align-items:flex-end;justify-content:center;gap:12px;
-      margin:0 0 30px;padding-bottom:26px;border-bottom:1px dashed var(--line2)}
-    .cast-strip img{height:74px;width:auto;opacity:.92;
-      filter:drop-shadow(0 0 1px rgba(255,255,255,.5))}
-  }
 
   /* ===================================================================
      CYBERPUNK OVERRIDE
@@ -356,15 +338,6 @@
   footer h2{padding-left:16px}
   .src{color:var(--mut2)}
 
-  /* --- キャスト：黒地なのでシアンのリムを足して「ネオンに照らされた」感 --- */
-  .deco img{filter:
-    drop-shadow(0 0 2px rgba(0,240,255,.45))
-    drop-shadow(0 0 1px rgba(255,255,255,.55))
-    drop-shadow(0 6px 16px rgba(0,0,0,.7))}
-  .cast-strip img{filter:
-    drop-shadow(0 0 2px rgba(0,240,255,.45))
-    drop-shadow(0 0 1px rgba(255,255,255,.55))}
-  .cast-strip{border-bottom-color:var(--line2)}
 
   /* --- スクロールバー --- */
   ::-webkit-scrollbar{width:11px;height:11px}
@@ -380,14 +353,6 @@
 </style>
 </head>
 <body>
-
-<div class="deco" aria-hidden="true">
-  <img class="d1" src="images/cast/muscle-b.webp" alt="" loading="lazy" decoding="async">
-  <img class="d2" src="images/cast/racer-b.webp" alt="" loading="lazy" decoding="async">
-  <img class="d3" src="images/cast/painter-a.webp" alt="" loading="lazy" decoding="async">
-  <img class="d4" src="images/cast/mechanic-b.webp" alt="" loading="lazy" decoding="async">
-  <img class="d5" src="images/cast/radio-b.webp" alt="" loading="lazy" decoding="async">
-</div>
 
 <nav class="sitebar">
   <div class="wrap">
@@ -411,6 +376,78 @@
     <div class="glyphnote"><span>委託・ブラックボックス</span><span>内製・標準・AI</span></div>
   </div>
 </header>
+
+<!-- SUPPLIER -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="stag"><i>NEW</i> &nbsp;最新 / 供給者としてのWayve ―― テスラと並べると、差はセンサーに出る</div>
+    <h2>同じ「地図なしEnd-to-End」でも、積むものが違う</h2>
+    <p class="sub">テスラのFSD v15が2026年11月21日に配信入りし、Wayveと並べて語られる場面が増えた。<b>エンド・ツー・エンド、HDマップなし</b>という設計思想はたしかに近い。だが日産版の構成まで降りると、<b>いちばん深い差はセンサーに出る</b>。そしてそれは、そのまま一台あたりのコストの話になる。</p>
+
+    <div class="tier3">
+      <div class="t-clear">
+        <div class="lb">確定 ── 日産版の構成</div>
+        <p>プロトタイプは<b>カメラ11台・レーダー5台・ルーフLiDAR 1台</b>。2025年9月22日公開、アリアベース、銀座の一般道でデモ。<b>確定契約は2025年12月10日</b>、搭載は<b>2027年度・国内の一部量産車</b>。</p>
+      </div>
+      <div class="t-live">
+        <div class="lb">動いている ── 商用の実績</div>
+        <p>ロンドンで<b>2026年9月3日</b>にUber経由の配車を開始（欧州2番目、1番目はザグレブ）。TfL認可は<b>最大15台・1年有効</b>、20台未満のMustang Mach-E、<b>全車に安全ドライバー</b>。</p>
+      </div>
+      <div class="t-debt">
+        <div class="lb">織り込めない ── 未開示</div>
+        <p>搭載<b>車種・グレード・価格</b>、日産の<b>出資額と持分比率</b>、北米展開の<b>時期</b>。いずれも未開示で、姉妹編のCVP分析・PSR分析には<b>一円も織り込んでいない</b>。</p>
+      </div>
+    </div>
+
+    <div class="risk" style="border-left-color:var(--wayve);margin-top:22px">
+      <div class="rh"><span class="rn" style="color:var(--wayve)">S-1</span><h4>日産版はLiDARを積む ── テスラとの最大の差は、ここ</h4></div>
+      <p>日産の次世代ProPILOT試作車は<b>カメラ11台・レーダー5台・ルーフにLiDAR 1台</b>。WayveのAIがカメラ映像を処理し、日産の<b>「Ground Truth Perception」（LiDARが中心）</b>と組み合わせる構成である。対してテスラのFSD v15は<b>カメラのみ</b>（レーダー・LiDAR不使用）を教義として掲げ、HW3を切り捨ててAI4に寄せた。</p>
+      <p><b>「End-to-End・地図なし」までは同じでも、積むものが違う。</b> Wayveの売りは<b>OEMのセンサー構成に適応すること</b>であり、初号機はセンサーリッチな側に振れた。これを「設計思想はほぼ同じ」とまとめると、一台あたりのコストという、投資家にとっていちばん効く差が消える。</p>
+      <div class="watch">搭載車種とグレード、LiDARが標準かオプションか、そして価格。粗利への影響を見積もる最初の材料がここに出る</div>
+    </div>
+
+    <div class="risk" style="margin-top:12px">
+      <div class="rh"><span class="rn">S-2</span><h4>OEMごとに中身が違う ── 「量産契約が相次ぐ」では潰れる</h4></div>
+      <ul>
+        <li style="--c:var(--nissan)"><b>日産</b> ── 次世代ProPILOT（ADASと地点間の運転支援）、LiDAR併用。<b>確定契約2025年12月10日</b>。<b>2027年度・国内の一部量産車</b></li>
+        <li style="--c:var(--wayve)"><b>メルセデス</b> ── 市街地・高速の地点間運転支援。<b>確定契約2026年9月22日</b>、MB.OSと自社ハード・自社地図I/Fに統合。<b>2年以内</b></li>
+        <li style="--c:var(--aosp)"><b>ステランティス</b> ── STLA AutoDriveと統合したL2++のハンズオフ地点間支援。2026年5月の戦略提携で<b>2028年・北米から</b>。別途、Uberと三者で<b>L4ロボタクシーの非拘束MoU</b>（2026年6月17日）</li>
+        <li style="--c:var(--tier1)"><b>VW</b> ── 独Spiegelが2026年10月1日に関係者3人の話として報道。<b>契約は未締結</b>で、Audiの調達部門がこれから条件交渉。VW・Cariad・Wayveはいずれもノーコメント。ボッシュと組んだL2は継続</li>
+      </ul>
+      <p><b>量産車への搭載は、Wayve側でも日産の2027年度が最初。</b> ただし<b>Wayveは独占供給ではない</b> ── メルセデスはWayveのほかに、CLAに積むNVIDIA Alpamayo系のL2+と、自社のL3「Drive Pilot」を並行して持ち、<b>3系統を走らせている</b>。既存スタックと併存する形が普通だと見るべきである。</p>
+      <div class="watch">日産が国内の一部車種から北米へ広げる時期。量で効き始めるのはそこから</div>
+    </div>
+
+    <div class="risk" style="margin-top:12px">
+      <div class="rh"><span class="rn">S-3</span><h4>資本関係 ── 日産は株主だが、持分は開示されていない</h4></div>
+      <p>2026年2月25日、Wayveはシリーズ Dで<b>12億ドル</b>を調達（CEO発言では15億ドル）、ポストマネー評価額は<b>86億ドル</b>。<b>日産・メルセデス・ステランティス・Uber・Microsoft・NVIDIA</b>が出資している。つまり<b>主要OEM3社が、採用すると同時に株主でもある</b>という構図である。</p>
+      <p>ただし<b>日産の出資額も持分比率も開示されていない</b>。評価益の大きさを知るには、有価証券報告書の投資有価証券の注記を当たる必要がある <b>（未確認）</b>。</p>
+      <div class="watch">有報の投資有価証券注記。Wayveの評価額が上がるほど、ここは営業外の含み益として効いてくる</div>
+    </div>
+
+    <div class="risk" style="margin-top:12px">
+      <div class="rh"><span class="rn">S-4</span><h4>NVIDIAは車載ではなく、学習側にいる</h4></div>
+      <p>学習データは<b>70カ国超</b>の実走データ。学習基盤は、メルセデス案件が<b>Microsoft Azure上のNVIDIA基盤</b>で、2026年11月9日に<b>CoreWeaveと複数年契約</b>（NVIDIA Blackwell GPU）を追加した。車載側は<b>Qualcomm Snapdragon Ride</b>（2026年3月の技術協業）である。</p>
+      <p><b>NVIDIAは①投資家であり、②学習側のGPUである。</b> 車載SoCとして採用されたという確認は取れていない。学習側と車載側を混ぜると、誰がどこを握っているかの構図を取り違える ── 後述の02節「所有権の移動」と同じ注意が要る。</p>
+      <div class="watch">量産時の車載SoCが実際にSnapdragon Rideで通るか。日産の既存ADAS系サプライヤーとの関係も含めて</div>
+    </div>
+
+    <div class="risk" style="margin-top:12px">
+      <div class="rh"><span class="rn">S-5</span><h4>世界モデルの使いどころが、テスラと逆</h4></div>
+      <p>Wayveの<b>GAIA-4</b>（本ページ初出時はGAIA-3）は、映像に加えて<b>レーダーも生成</b>し（Wayve自称で業界初）、<b>AI Driverをループに入れた閉ループの安全評価</b>に使う。世界モデルは<b>測るための道具</b>であり、車両の画面には出さない。</p>
+      <p>テスラのv15「Reality View」は逆である。<b>運転モデル自体が生成したシーンを、そのまま画面に出す</b>。同じ「世界モデル」という語でも、<b>Wayveは測るために、テスラは見せるために</b>使っている。安全の打ち出し方もそこに対応していて、テスラは「重大介入が25分の1」という倍率を出すが、<b>比較対象のバージョンも基準となる介入率も公表していない</b>（しかもこれは<b>ビジョンエンコーダー単体</b>の改善として書かれている）。Wayveは倍率を出さず、閉ループ評価を前面に置く。</p>
+      <div class="watch">日産がAI-DVの安全性をどう説明するか。倍率型か、閉ループ評価型か。説明の型は、そのまま認証の通し方に効く</div>
+    </div>
+
+    <div class="risk" style="border-left-color:var(--risk);margin-top:12px">
+      <div class="rh"><span class="rn">S-6</span><h4>無人走行の実績は、まだゼロ</h4></div>
+      <p>ロンドンの運行は<b>全車に安全ドライバーが乗る</b>。グレーターロンドン内で空港発着は除外、TfL認可は最大15台・1年有効。<b>Wayveの無人走行の実績は、まだ一マイルもない。</b></p>
+      <p>テスラは第3四半期末で<b>無人累計約200万マイル</b>、米国<b>6都市圏</b>（10月21日の決算説明会時点。その後フォートワース11月2日・サンアントニオ11月9日が加わったとの報道 ── 現在の都市数は<b>要確認</b>）。ただしどこも<b>狭いジオフェンス内の低速運行</b>で、高速道路はほぼ使わない。ベイエリアは州の規制で安全ドライバーが乗る。そして<b>オーナー車での無人走行は2027年第2四半期の予定</b>で、これはオーナーが自分の車をRobotaxi車隊に登録する形であり、個人用の自動運転モードとは別物である。</p>
+      <p><b>後述のR-5（zero-shot ≠ driverless）で触れる距離は、まだ縮んでいない。</b> 日産にとってのAI-DVは2027年度の<b>レベル2</b>であり、無人化はその先の別の話である。</p>
+      <div class="watch">ロンドンで安全ドライバーが降りる許認可が出るか。それがWayveの技術が「支援」から「無人」へ渡れるかの最初の関門になる</div>
+    </div>
+  </div>
+</section>
 
 <!-- THESIS -->
 <section class="reveal">
@@ -765,88 +802,9 @@
   </div>
 </section>
 
-<!-- SUPPLIER -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="stag"><i>07</i> &nbsp;追記 / 供給者としてのWayve ―― テスラと並べると、差はセンサーに出る</div>
-    <h2>同じ「地図なしEnd-to-End」でも、積むものが違う</h2>
-    <p class="sub">テスラのFSD v15が2026年11月21日に配信入りし、Wayveと並べて語られる場面が増えた。<b>エンド・ツー・エンド、HDマップなし</b>という設計思想はたしかに近い。だが日産版の構成まで降りると、<b>いちばん深い差はセンサーに出る</b>。そしてそれは、そのまま一台あたりのコストの話になる。</p>
-
-    <div class="tier3">
-      <div class="t-clear">
-        <div class="lb">確定 ── 日産版の構成</div>
-        <p>プロトタイプは<b>カメラ11台・レーダー5台・ルーフLiDAR 1台</b>。2025年9月22日公開、アリアベース、銀座の一般道でデモ。<b>確定契約は2025年12月10日</b>、搭載は<b>2027年度・国内の一部量産車</b>。</p>
-      </div>
-      <div class="t-live">
-        <div class="lb">動いている ── 商用の実績</div>
-        <p>ロンドンで<b>2026年9月3日</b>にUber経由の配車を開始（欧州2番目、1番目はザグレブ）。TfL認可は<b>最大15台・1年有効</b>、20台未満のMustang Mach-E、<b>全車に安全ドライバー</b>。</p>
-      </div>
-      <div class="t-debt">
-        <div class="lb">織り込めない ── 未開示</div>
-        <p>搭載<b>車種・グレード・価格</b>、日産の<b>出資額と持分比率</b>、北米展開の<b>時期</b>。いずれも未開示で、姉妹編のCVP分析・PSR分析には<b>一円も織り込んでいない</b>。</p>
-      </div>
-    </div>
-
-    <div class="risk" style="border-left-color:var(--wayve);margin-top:22px">
-      <div class="rh"><span class="rn" style="color:var(--wayve)">S-1</span><h4>日産版はLiDARを積む ── テスラとの最大の差は、ここ</h4></div>
-      <p>日産の次世代ProPILOT試作車は<b>カメラ11台・レーダー5台・ルーフにLiDAR 1台</b>。WayveのAIがカメラ映像を処理し、日産の<b>「Ground Truth Perception」（LiDARが中心）</b>と組み合わせる構成である。対してテスラのFSD v15は<b>カメラのみ</b>（レーダー・LiDAR不使用）を教義として掲げ、HW3を切り捨ててAI4に寄せた。</p>
-      <p><b>「End-to-End・地図なし」までは同じでも、積むものが違う。</b> Wayveの売りは<b>OEMのセンサー構成に適応すること</b>であり、初号機はセンサーリッチな側に振れた。これを「設計思想はほぼ同じ」とまとめると、一台あたりのコストという、投資家にとっていちばん効く差が消える。</p>
-      <div class="watch">搭載車種とグレード、LiDARが標準かオプションか、そして価格。粗利への影響を見積もる最初の材料がここに出る</div>
-    </div>
-
-    <div class="risk" style="margin-top:12px">
-      <div class="rh"><span class="rn">S-2</span><h4>OEMごとに中身が違う ── 「量産契約が相次ぐ」では潰れる</h4></div>
-      <ul>
-        <li style="--c:var(--nissan)"><b>日産</b> ── 次世代ProPILOT（ADASと地点間の運転支援）、LiDAR併用。<b>確定契約2025年12月10日</b>。<b>2027年度・国内の一部量産車</b></li>
-        <li style="--c:var(--wayve)"><b>メルセデス</b> ── 市街地・高速の地点間運転支援。<b>確定契約2026年9月22日</b>、MB.OSと自社ハード・自社地図I/Fに統合。<b>2年以内</b></li>
-        <li style="--c:var(--aosp)"><b>ステランティス</b> ── STLA AutoDriveと統合したL2++のハンズオフ地点間支援。2026年5月の戦略提携で<b>2028年・北米から</b>。別途、Uberと三者で<b>L4ロボタクシーの非拘束MoU</b>（2026年6月17日）</li>
-        <li style="--c:var(--tier1)"><b>VW</b> ── 独Spiegelが2026年10月1日に関係者3人の話として報道。<b>契約は未締結</b>で、Audiの調達部門がこれから条件交渉。VW・Cariad・Wayveはいずれもノーコメント。ボッシュと組んだL2は継続</li>
-      </ul>
-      <p><b>量産車への搭載は、Wayve側でも日産の2027年度が最初。</b> ただし<b>Wayveは独占供給ではない</b> ── メルセデスはWayveのほかに、CLAに積むNVIDIA Alpamayo系のL2+と、自社のL3「Drive Pilot」を並行して持ち、<b>3系統を走らせている</b>。既存スタックと併存する形が普通だと見るべきである。</p>
-      <div class="watch">日産が国内の一部車種から北米へ広げる時期。量で効き始めるのはそこから</div>
-    </div>
-
-    <div class="risk" style="margin-top:12px">
-      <div class="rh"><span class="rn">S-3</span><h4>資本関係 ── 日産は株主だが、持分は開示されていない</h4></div>
-      <p>2026年2月25日、Wayveはシリーズ Dで<b>12億ドル</b>を調達（CEO発言では15億ドル）、ポストマネー評価額は<b>86億ドル</b>。<b>日産・メルセデス・ステランティス・Uber・Microsoft・NVIDIA</b>が出資している。つまり<b>主要OEM3社が、採用すると同時に株主でもある</b>という構図である。</p>
-      <p>ただし<b>日産の出資額も持分比率も開示されていない</b>。評価益の大きさを知るには、有価証券報告書の投資有価証券の注記を当たる必要がある <b>（未確認）</b>。</p>
-      <div class="watch">有報の投資有価証券注記。Wayveの評価額が上がるほど、ここは営業外の含み益として効いてくる</div>
-    </div>
-
-    <div class="risk" style="margin-top:12px">
-      <div class="rh"><span class="rn">S-4</span><h4>NVIDIAは車載ではなく、学習側にいる</h4></div>
-      <p>学習データは<b>70カ国超</b>の実走データ。学習基盤は、メルセデス案件が<b>Microsoft Azure上のNVIDIA基盤</b>で、2026年11月9日に<b>CoreWeaveと複数年契約</b>（NVIDIA Blackwell GPU）を追加した。車載側は<b>Qualcomm Snapdragon Ride</b>（2026年3月の技術協業）である。</p>
-      <p><b>NVIDIAは①投資家であり、②学習側のGPUである。</b> 車載SoCとして採用されたという確認は取れていない。学習側と車載側を混ぜると、誰がどこを握っているかの構図を取り違える ── 本ページ02節の「所有権の移動」と同じ注意が要る。</p>
-      <div class="watch">量産時の車載SoCが実際にSnapdragon Rideで通るか。日産の既存ADAS系サプライヤーとの関係も含めて</div>
-    </div>
-
-    <div class="risk" style="margin-top:12px">
-      <div class="rh"><span class="rn">S-5</span><h4>世界モデルの使いどころが、テスラと逆</h4></div>
-      <p>Wayveの<b>GAIA-4</b>（本ページ初出時はGAIA-3）は、映像に加えて<b>レーダーも生成</b>し（Wayve自称で業界初）、<b>AI Driverをループに入れた閉ループの安全評価</b>に使う。世界モデルは<b>測るための道具</b>であり、車両の画面には出さない。</p>
-      <p>テスラのv15「Reality View」は逆である。<b>運転モデル自体が生成したシーンを、そのまま画面に出す</b>。同じ「世界モデル」という語でも、<b>Wayveは測るために、テスラは見せるために</b>使っている。安全の打ち出し方もそこに対応していて、テスラは「重大介入が25分の1」という倍率を出すが、<b>比較対象のバージョンも基準となる介入率も公表していない</b>（しかもこれは<b>ビジョンエンコーダー単体</b>の改善として書かれている）。Wayveは倍率を出さず、閉ループ評価を前面に置く。</p>
-      <div class="watch">日産がAI-DVの安全性をどう説明するか。倍率型か、閉ループ評価型か。説明の型は、そのまま認証の通し方に効く</div>
-    </div>
-
-    <div class="risk" style="border-left-color:var(--risk);margin-top:12px">
-      <div class="rh"><span class="rn">S-6</span><h4>無人走行の実績は、まだゼロ</h4></div>
-      <p>ロンドンの運行は<b>全車に安全ドライバーが乗る</b>。グレーターロンドン内で空港発着は除外、TfL認可は最大15台・1年有効。<b>Wayveの無人走行の実績は、まだ一マイルもない。</b></p>
-      <p>テスラは第3四半期末で<b>無人累計約200万マイル</b>、米国<b>6都市圏</b>（10月21日の決算説明会時点。その後フォートワース11月2日・サンアントニオ11月9日が加わったとの報道 ── 現在の都市数は<b>要確認</b>）。ただしどこも<b>狭いジオフェンス内の低速運行</b>で、高速道路はほぼ使わない。ベイエリアは州の規制で安全ドライバーが乗る。そして<b>オーナー車での無人走行は2027年第2四半期の予定</b>で、これはオーナーが自分の車をRobotaxi車隊に登録する形であり、個人用の自動運転モードとは別物である。</p>
-      <p><b>R-5（zero-shot ≠ driverless）で書いた距離は、まだ縮んでいない。</b> 日産にとってのAI-DVは2027年度の<b>レベル2</b>であり、無人化はその先の別の話である。</p>
-      <div class="watch">ロンドンで安全ドライバーが降りる許認可が出るか。それがWayveの技術が「支援」から「無人」へ渡れるかの最初の関門になる</div>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="cast-strip" aria-hidden="true">
-      <img src="images/cast/muscle-b.webp" alt="" loading="lazy" decoding="async">
-      <img src="images/cast/racer-b.webp" alt="" loading="lazy" decoding="async">
-      <img src="images/cast/painter-a.webp" alt="" loading="lazy" decoding="async">
-      <img src="images/cast/mechanic-b.webp" alt="" loading="lazy" decoding="async">
-      <img src="images/cast/radio-b.webp" alt="" loading="lazy" decoding="async">
-    </div>
     <h2>出典と注記</h2>
     <p class="src">
       Wayve — AI-500 Roadshow（500都市 / 219 zero-shot, 2025）, GAIA-3 launch（2025-12）, Nissan採用発表（2025-04）<br>
@@ -867,7 +825,7 @@
       Nissan — イヴァン・エスピノーサCEOの長時間インタビュー（2026年秋）：自動運転の普及率目標90%・「手が届くテクノロジー」・サブスクリプション／分割払いの検討・東京でのロボタクシー実証（年内開始）<br>
       規格 — UNECE R155 / R156, ISO 26262（ASIL）, ISO 21434, JASPAR
     </p>
-    <p class="disc">公開情報・登壇資料・報道をもとに再構成した整理用ドキュメント。数値・時期は発表時点のもので、量産展開の実績は別途検証を要する。ホンダが日産のコアOSを土台にする、という点は<b>公式発表ではなく報道と本ページの読み</b>であり、ホンダ側は公式にはその表現を否定している（セクション05の Fact / Reported / Reading の区別を参照）。セクション06の「90%」「サブスクリプション」は<b>目標および検討段階の発言</b>であり、金額・時期・課金方式は未公表。損益への織り込みはしていない。セクション07のセンサー構成は<b>試作車の公開仕様</b>であり、量産車の構成・搭載車種・グレード・価格はいずれも未発表。LiDAR併用による原価増も<b>損益モデルに織り込んでいない</b>。日産のWayve出資額・持分比率は非開示。投資判断ではなく、論点整理を目的とする。</p>
+    <p class="disc">公開情報・登壇資料・報道をもとに再構成した整理用ドキュメント。数値・時期は発表時点のもので、量産展開の実績は別途検証を要する。ホンダが日産のコアOSを土台にする、という点は<b>公式発表ではなく報道と本ページの読み</b>であり、ホンダ側は公式にはその表現を否定している（セクション05の Fact / Reported / Reading の区別を参照）。セクション06の「90%」「サブスクリプション」は<b>目標および検討段階の発言</b>であり、金額・時期・課金方式は未公表。損益への織り込みはしていない。冒頭の節（供給者としてのWayve）のセンサー構成は<b>試作車の公開仕様</b>であり、量産車の構成・搭載車種・グレード・価格はいずれも未発表。LiDAR併用による原価増も<b>損益モデルに織り込んでいない</b>。日産のWayve出資額・持分比率は非開示。投資判断ではなく、論点整理を目的とする。</p>
   </div>
 </footer>
 

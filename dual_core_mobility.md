@@ -1,7 +1,6 @@
 ---
 title: デュアルコア・モビリティ【改訂版】
 speakers: soy fable
-cast: mechanic-b muscle-a painter-b racer-a radio-b
 ---
 
 # デュアルコア・モビリティ【改訂版】

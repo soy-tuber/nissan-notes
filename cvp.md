@@ -1,6 +1,5 @@
 ---
 title: Re:Nissanを踏まえたCVPシナリオ分析
-cast: mechanic-a painter-b muscle-b radio-a
 ---
 
 # Re:Nissanを踏まえたCVPシナリオ分析
